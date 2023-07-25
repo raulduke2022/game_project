@@ -1,19 +1,27 @@
 <template>
     <section>
         <base-card>
-            <h2>Page not found</h2>
+            <h2> {{ title }}</h2>
             <p>
-                This page could not be found - maybe check out all our
-                <router-link to="/coaches">coaches</router-link>.
+                {{ price }}
             </p>
         </base-card>
     </section>
 </template>
 
 <script>
+export default {
+    props: ['title', 'price'],
+    data() {
+        return {}
+    }
+}
 
 </script>
 
-<style>
-
+<style scoped>
+section {
+    display: grid;
+    //grid-template-columns: auto;
+}
 </style>

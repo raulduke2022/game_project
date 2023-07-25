@@ -1,23 +1,12 @@
 <template>
-    <div class="container">
-        <header>Интернет-магазин! Ключи для игр</header>
-        <div class="menu">
-            <div>
-                Подробнее
-            </div>
-        </div>
-        <div class="sidebar">
-            <router-link :to="{name: 'Game'}" class="link">Главное</router-link>
-            <router-link :to="{name: 'Game'}" class="link">Поддержка</router-link>
-            <router-link :to="{name: 'Game'}" class="link">Как купить</router-link>
-            <router-link :to="{name: 'Game'}" class="link">Отзывы</router-link>
-            <router-link :to="{name: 'Game'}" class="link">Гарантии</router-link>
-            <router-link :to="{name: 'Game'}" class="link">О нас</router-link>
-        </div>
+    <base-spinner v-if="isLoading" class="spinner"></base-spinner>
+    <div class="container" v-show="!isLoading">
+        <header v-if="!isFirstLoad">
+        </header>
         <main>
-            <router-view></router-view>
+            <router-view @scrollMe="scrollToBottom"></router-view>
         </main>
-        <footer class="footer-container">
+        <footer class="footer-container" v-if="!isFirstLoad">
             <router-link :to="{name: 'Game'}" class="footer-link">О нас</router-link>
             <router-link :to="{name: 'Game'}" class="footer-link">Политика конфиденциальности</router-link>
         </footer>
@@ -25,51 +14,78 @@
 </template>
 
 <script>
+export default {
+    watch: {
+        isLoading(newVal){
+            if (newVal){
+                this.isFirstLoad = false;
+            }
+        }
+    },
+    data() {
+        return {
+            isFirstLoad: true,
+        }
+    },
+    computed: {
+        isLoading() {
+            return this.$store.getters.isLoading;
+        },
+    },
+    methods: {
+        scrollToBottom() {
+            this.$nextTick(() => {
+                window.scrollTo({left: 0, top: document.body.scrollHeight, behavior: "smooth"});
+            })
+        },
+    }
+}
 </script>
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,900&display=swap');
+
+
+.spinner {
+    height: 100vh;
+}
 
 .container {
     display: grid;
     grid-template-areas:
-        "menu header header"
-        "sidebar main main"
+        "header header header"
+        "main main main"
         "footer footer footer";
-    grid-template-columns: 200px 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 300px 1fr 1fr;
+    grid-template-rows: auto;
     min-height: 100vh;
+    row-gap: 4px;
+}
+
+html {
+    height: 100%;
 }
 
 body {
+    height: 100%;
     margin: 0;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
 }
 
 header {
+    height: 30rem;
     grid-area: header;
-    background-color: #333;
+    background-color: black;
     color: #fff;
-    padding: 20px;
     text-align: center;
-}
-
-.sidebar {
-    grid-area: sidebar;
-    background-color: #f0f0f0;
-    padding: 20px;
-//display: none
-}
-
-.link {
-    margin-bottom: 30px;
-    display: block;
-    text-decoration: none;
+    box-shadow: 4px 4px 4px 4px greenyellow;
+    box-sizing: border-box;
 }
 
 main {
+    background-color: snow;
     grid-area: main;
     padding: 20px;
 }
@@ -80,20 +96,7 @@ footer {
     color: #fff;
     padding: 20px;
     text-align: center;
-}
-
-.menu {
-    background-color: #cbd5e0;
-    grid-area: menu;
-    margin: 0;
-    padding-inline-start: 0;
-}
-
-.menu div {
-    display: flex;
-    color: green;
-    justify-content: center;
-    padding-top: 20px;
+    max-height: 3rem;
 }
 
 .footer-container {

@@ -5,7 +5,8 @@ export default {
     namespaced: true,
     state() {
         return {
-            games: []
+            games: [],
+            nextPage: null,
         };
     },
     mutations,

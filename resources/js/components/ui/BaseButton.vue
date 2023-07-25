@@ -35,8 +35,8 @@ a {
   text-decoration: none;
   padding: 0.75rem 1.5rem;
   font: inherit;
-  background-color: #3a0061;
-  border: 1px solid #3a0061;
+  background-color: #5dbea3;
+  border: 1px solid #5dbea3;
   color: white;
   cursor: pointer;
   border-radius: 30px;

@@ -1,5 +1,8 @@
 export default {
-    setGames(state, payload) {
-        state.games = payload
+    addGames(state, payload){
+        state.games = [...state.games, ...payload];
+    },
+    setNextPage(state,payload) {
+        state.nextPage = payload
     }
 };
