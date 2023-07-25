@@ -60,7 +60,7 @@ export default {
     grid-template-columns: 300px 1fr 1fr;
     grid-template-rows: auto;
     min-height: 100vh;
-    row-gap: 4px;
+    row-gap: 10px;
 }
 
 html {
@@ -72,6 +72,8 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 header {

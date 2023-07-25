@@ -70,7 +70,7 @@ export default {
 
 .container {
     display: grid;
-    margin: 0 15rem;
+    margin: 0rem 15rem;
     grid-template-columns: repeat(3, 1fr);
     list-style: none;
 }

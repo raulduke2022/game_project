@@ -1,10 +1,9 @@
 <template>
     <section>
         <base-card>
-            <h2> {{ title }}</h2>
-            <p>
-                {{ price }}
-            </p>
+            <div> {{ title }} </div>
+            <div> {{ price }} </div>
+            <div></div>
         </base-card>
     </section>
 </template>
@@ -12,9 +11,6 @@
 <script>
 export default {
     props: ['title', 'price'],
-    data() {
-        return {}
-    }
 }
 
 </script>
@@ -22,6 +18,5 @@ export default {
 <style scoped>
 section {
     display: grid;
-    //grid-template-columns: auto;
 }
 </style>
