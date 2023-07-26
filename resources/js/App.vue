@@ -4,7 +4,7 @@
         <header v-if="!isFirstLoad">
         </header>
         <main>
-            <router-view @scrollMe="scrollToBottom"></router-view>
+            <router-view ></router-view>
         </main>
         <footer class="footer-container" v-if="!isFirstLoad">
             <router-link :to="{name: 'Game'}" class="footer-link">О нас</router-link>

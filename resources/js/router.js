@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
     {
@@ -7,13 +7,13 @@ const routes = [
         component: () => import('./components/games/GamesList.vue'),
         children: [
             {
-                path: 'games/:id',
-                component: () => import ('./pages/GamePage.vue'),
+                path: '/games/:id',
+                component: () => import('./pages/GamePage.vue'),
                 name: 'GamePage'
             }
         ]
     },
-    {path: '/:notFound(.*)', component: () => import('./components/NotFound.vue')}
+    { path: '/:notFound(.*)', component: () => import('./components/NotFound.vue') }
 ]
 
 const router = createRouter({
