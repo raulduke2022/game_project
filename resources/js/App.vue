@@ -16,11 +16,11 @@
 <script>
 export default {
     watch: {
-        isLoading(newVal){
-            if (newVal){
+        isLoading(newVal) {
+            if (newVal) {
                 this.isFirstLoad = false;
             }
-        }
+        },
     },
     data() {
         return {
@@ -35,7 +35,11 @@ export default {
     methods: {
         scrollToBottom() {
             this.$nextTick(() => {
-                window.scrollTo({left: 0, top: document.body.scrollHeight, behavior: "smooth"});
+                window.scrollTo({
+                    left: 0,
+                    top: document.body.scrollHeight,
+                    behavior: "smooth"
+                });
             })
         },
     }
@@ -54,21 +58,16 @@ export default {
 .container {
     display: grid;
     grid-template-areas:
-        "header header header"
-        "main main main"
-        "footer footer footer";
-    grid-template-columns: 300px 1fr 1fr;
-    grid-template-rows: auto;
-    min-height: 100vh;
-    row-gap: 10px;
+        "header"
+        "main"
+        "footer";
+    grid-template-rows: auto 1fr auto;
+    height: 100vh
 }
 
-html {
-    height: 100%;
-}
 
 body {
-    height: 100%;
+    z-index: -1;
     margin: 0;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
@@ -77,28 +76,31 @@ body {
 }
 
 header {
-    height: 30rem;
+    background-image: url("back.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
     grid-area: header;
     background-color: black;
     color: #fff;
     text-align: center;
-    box-shadow: 4px 4px 4px 4px greenyellow;
-    box-sizing: border-box;
+    height: 30rem;
+    border-bottom: green 2px solid;
 }
 
 main {
-    background-color: snow;
+    background-color: black;
     grid-area: main;
     padding: 20px;
 }
 
 footer {
+    border-top: green 2px solid;
     grid-area: footer;
-    background-color: #333;
     color: #fff;
     padding: 20px;
     text-align: center;
-    max-height: 3rem;
+    background-color: #ffa300;
 }
 
 .footer-container {
@@ -112,5 +114,8 @@ footer {
     text-decoration: none;
     color: white
 }
+
+a { text-decoration: none; }
+
 
 </style>

@@ -18,7 +18,7 @@ class GamesController extends Controller
 
     public function index(Request $request) :JsonResponse
     {
-        $games = DB::table('games')->paginate(5);
+        $games = DB::table('games')->paginate(9);
         return response()->json($games);
     }
 

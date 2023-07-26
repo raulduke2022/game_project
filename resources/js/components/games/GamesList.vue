@@ -1,13 +1,13 @@
 <template>
     <div>
-        <ul class="container">
+        <ul class="main-container">
             <li v-for="game in games" :key="game.id">
-                <game-detail :title="game.title" :price="game.price"></game-detail>
+                <game-detail :title="game.title" :price="game.price" :id="game.id"></game-detail>
             </li>
         </ul>
     </div>
     <div class="button">
-        <base-button @click="loadMore" v-if="nextPage">Загрузить еще</base-button>
+        <base-button @click="loadMore" v-if="nextPage">Показать еще</base-button>
     </div>
 </template>
 
@@ -68,10 +68,10 @@ export default {
 
 <style scoped>
 
-.container {
+.main-container {
     display: grid;
-    margin: 0rem 15rem;
-    grid-template-columns: repeat(3, 1fr);
+    margin: 0 15rem;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     list-style: none;
 }
 
