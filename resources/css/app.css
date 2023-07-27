@@ -1,0 +1,34 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    line-height: 1;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+.nav-link:hover {
+    background-color: #5dbea3;
+}
+
+.navbar {
+    box-shadow: 2px 2px 2px 2px green;
+    height: 3rem;
+}
+
+.sidebar {
+    box-shadow: 2px 2px 2px 2px green;
+}
+
+.nav-link {
+    margin-top: 1rem;
+}
+
+.row {
+}
+
+main {
+    overflow: scroll;
+}
+
