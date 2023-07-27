@@ -6,7 +6,7 @@ use App\Http\Controllers\GameController;
 
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', function () {return view('admin/home');})->name('admin');
+    Route::get('/', [GameController::class,'index'])->name('admin');
 });
 
 Route::get('/', function () {return redirect('/market');})->name('market');

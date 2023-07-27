@@ -11,14 +11,14 @@
 </head>
 <body>
 <div class="container-fluid m-0 p-0">
-    <div class="row g-0">
+    <div class="row">
         <div class="m-0 p-0">
             @include('admin/layouts.navbar')
         </div>
         <div class="col-auto">
             @include('admin/layouts.sidebar')
         </div>
-        <div class="col" style="margin: 3rem;">
+        <div class="col main-col">
             @include('admin/layouts.main')
         </div>
     </div>
