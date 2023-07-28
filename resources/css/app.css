@@ -8,35 +8,65 @@ html {
     box-sizing: border-box;
 }
 
+:root {
+    --main-height: calc(100vh - 3rem - 4px);
+}
+
 .nav-link:hover {
     background-color: #5dbea3;
 }
 
 .navbar {
-    box-shadow: 2px 2px 2px 2px green;
-    height: 3rem;
-    background-color: red;
+    box-shadow: 2px 2px green;
+    max-height: 3rem;
+    background-color: yellow;
     display: flex;
 }
 
 .sidebar {
-    box-shadow: 2px 2px 2px 2px green;
+    box-shadow: 2px 2px green;
 }
 
 .nav-link {
     margin-top: 1rem;
 }
 
-.row {
-    height: 100vh;
-}
-
 .main-col {
-    margin: 2rem;
-    background-color: red;
+    margin: 0 1rem;
+    overflow: auto;
+    max-height: var(--main-height);
 }
 
 .sidebar {
     width: 17.5rem;
+    height: var(--main-height);
 }
 
+.container-fluid {
+    /*background-color: grey;*/
+    /*height: 100vh;*/
+}
+
+footer {
+    min-height: 3rem;
+    background-color: white;
+}
+
+.main-header div {
+    padding: 1rem;
+    font-size: 2rem;
+}
+
+.main-header {
+    border-bottom: 2px black solid;
+    margin-bottom: 1rem;
+}
+
+.index-table {
+    overflow: auto;
+    max-height: var(--main-height);
+}
+
+.table-td {
+    word-break: break-all;
+}

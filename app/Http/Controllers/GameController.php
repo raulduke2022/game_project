@@ -2,65 +2,78 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\ValidateGameInput;
 use Illuminate\Http\Request;
 use App\Models\Game;
+use App\Models\Image;
 
 class GameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware(ValidateGameInput::class)->only('store', 'update');
+    }
+
     public function index()
     {
-        $games = Game::paginate(20);
-        return view('admin/home',compact('games'));
+        $games = Game::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin/index', compact('games'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin/create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $game = Game::firstOrCreate([
+            'key' => request('key'),
+            'title' => request('title')
+        ]);
+
+        $files = $request->file('attachment');
+
+        if ($request->hasFile('attachment')) {
+            foreach ($files as $file) {
+                $destination = $file->store('public/games/' . $game->id);
+                $imagePath = str_replace('public/', '', $destination);
+                Image::create([
+                        'path' => $imagePath,
+                        'game_id' => $game->id,
+                        'title' => $file->getClientOriginalName()
+                    ]
+                );
+            }
+        }
+
+        session()->flash('success', 'Запись успешно создана');
+        return redirect(route('games.index'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+    public function show(Game $game)
     {
-        //
+        $images = $game->images;
+        return view('admin/show', compact('game', 'images'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Game $game)
     {
-        //
+        return view('admin/edit', compact('game'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Game $game)
     {
-        //
+        $game->update($request->all());
+        session()->flash('success', 'Запись успешно обновлена');
+        return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Game $game)
     {
-        //
+        $game->delete();
+        session()->flash('success', 'Запись успешно удалена');
+        return redirect()->back();
     }
 }

@@ -11,16 +11,19 @@
 </head>
 <body>
 <div class="container-fluid m-0 p-0">
-    <div class="row">
-        <div class="m-0 p-0">
+    <div class="row d-flex align-items-stretch">
+        <div class="col-md-12">
             @include('admin/layouts.navbar')
         </div>
-        <div class="col-auto">
+        <div class="col-md-auto">
             @include('admin/layouts.sidebar')
         </div>
-        <div class="col main-col">
+        <div class="col main-col ">
             @include('admin/layouts.main')
         </div>
+{{--        <div>--}}
+{{--            @include('admin/layouts.footer')--}}
+{{--        </div>--}}
     </div>
 </div>
 </body>
