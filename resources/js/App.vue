@@ -4,7 +4,7 @@
         <header v-if="!isFirstLoad">
         </header>
         <main>
-            <router-view ></router-view>
+            <router-view @scrollMe="scrollToBottom"></router-view>
         </main>
         <footer class="footer-container" v-if="!isFirstLoad">
             <router-link :to="{name: 'Game'}" class="footer-link">О нас</router-link>
@@ -34,11 +34,12 @@ export default {
     },
     methods: {
         scrollToBottom() {
+            console.log('hello');
             this.$nextTick(() => {
                 window.scrollTo({
                     left: 0,
                     top: document.body.scrollHeight,
-                    behavior: "smooth"
+                    // behavior: "smooth"
                 });
             })
         },

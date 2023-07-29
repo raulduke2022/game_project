@@ -8,10 +8,10 @@
     @endif
     <header class="main-header">
         <div>Данные по ключам</div>
-    </header>
     <div class="d-flex justify-content-start">
         <a href="{{ route('games.create') }}" class="btn btn-warning">Добавить ключ</a>
     </div>
+    </header>
     <div class="index-table">
         @if($games->isEmpty())
             <p>Тут пока ничего нет...</p>

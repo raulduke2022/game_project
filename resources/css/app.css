@@ -70,3 +70,9 @@ footer {
 .table-td {
     word-break: break-all;
 }
+
+.image-row {
+    border: 0.1rem solid mediumaquamarine;
+    box-shadow: 1px 1px mediumaquamarine;
+    max-height: 20rem;
+}
