@@ -18,7 +18,7 @@ class IsAdmin
         if ($request->user() && $request->user()->isAdmin()) {
             return $next($request);
         }
-
-        abort(403, 'Unauthorized');
+        return redirect()->route('notAdmin');
+//        abort(403, 'Unauthorized');
     }
 }

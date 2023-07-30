@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
-class ImagesController extends Controller
+class ImagesController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -42,8 +43,8 @@ class ImagesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Image $image)
     {
-        //
+        $this->service->delete($image);
     }
 }

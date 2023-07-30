@@ -9,22 +9,24 @@ html {
 }
 
 :root {
-    --main-height: calc(100vh - 3rem - 4px);
+    --main-height: calc(100vh - 3rem);
 }
 
 .nav-link:hover {
-    background-color: #5dbea3;
+    box-shadow: 2px 2px 2px 2px green;
+    border-radius: 2px;
 }
 
 .navbar {
-    box-shadow: 2px 2px green;
-    max-height: 3rem;
+    box-shadow: 2px 2px 2px 2px green;
+    height: 3rem;
     background-color: yellow;
     display: flex;
+    width: 100%;
 }
 
 .sidebar {
-    box-shadow: 2px 2px green;
+    box-shadow: 2px 2px 2px 2px green;
 }
 
 .nav-link {
@@ -40,11 +42,6 @@ html {
 .sidebar {
     width: 17.5rem;
     height: var(--main-height);
-}
-
-.container-fluid {
-    /*background-color: grey;*/
-    /*height: 100vh;*/
 }
 
 footer {
@@ -71,8 +68,26 @@ footer {
     word-break: break-all;
 }
 
+.main-container {
+    min-width: 93%;
+}
+
 .image-row {
     border: 0.1rem solid mediumaquamarine;
     box-shadow: 1px 1px mediumaquamarine;
     max-height: 20rem;
 }
+
+.logout-link {
+    padding-right: 2rem;
+}
+
+.logout-link a {
+    text-decoration: none;
+}
+
+/*.logout-link a:hover,*/
+/*.logout-link a:active {*/
+/*    box-shadow: 2px 2px 2px 2px green;*/
+/*    border-radius: 2px;*/
+/*}*/

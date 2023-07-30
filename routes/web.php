@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
-use App\Http\Controllers\Image\ImageController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,4 +15,4 @@ Route::get('/', function () {return redirect('/market');})->name('market');
 Route::get('/market/{any?}', function () {return view("market");})->where('any', '.*');
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/guest', [App\Http\Controllers\HomeController::class, 'index'])->name('notAdmin');
