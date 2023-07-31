@@ -52,7 +52,7 @@
                                   style="display: inline-block">
                                 @csrf
                                 @method('PUT')
-                                <button type="submit" class="btn {{ $order->is_done ? 'btn-danger' : 'btn-success'}}">
+                                <button title="{{ $order->is_done ? 'Изменить статус на "Новый"' : 'Изменить статус на "Обработан"'}}" type="submit" class="btn {{ $order->is_done ? 'btn-danger' : 'btn-success'}}">
                                     {!! $order->is_done ? '<i class="fa fa-x"></i>' : '<i class="fa fa-check"></i>' !!}
                                 </button>
                             </form>
