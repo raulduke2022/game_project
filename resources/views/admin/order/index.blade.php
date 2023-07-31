@@ -12,7 +12,7 @@
             <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="visually-hidden">Toggle Dropdown</span>
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu p-2">
                 <li><a class="dropdown-item mb-1" href="{{ route('orders.index', ['is_done' => 'false']) }}">Новые</a></li>
                 <li><a class="dropdown-item mb-1" href="{{ route('orders.index', ['is_done' => 'true']) }}">Обработанные</a></li>
                 <li><a class="dropdown-item mb-1" href="{{ route('orders.index') }}">Показать все</a></li>
