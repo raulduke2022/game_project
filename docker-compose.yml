@@ -27,7 +27,7 @@ services:
             SERVICE_TAGS: dev
             SERVICE_NAME: mysql
         volumes:
-            - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+            - mysql-data:/var/lib/mysql
         networks:
             - market
     nginx:
@@ -44,3 +44,6 @@ services:
 networks:
     market:
         driver: bridge
+
+volumes:
+    mysql-data:
