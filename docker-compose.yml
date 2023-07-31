@@ -1,48 +1,46 @@
+version: "3.7"
 services:
-    nginx:
-        image: nginx:latest
-        volumes:
-            - ./:/var/www
-            - ./_docker/nginx/conf.d:/etc/nginx/conf.d
-        ports:
-            - 80:80
-        depends_on:
-            - app
-        container_name: project_nginx
-
     app:
         build:
-            context: ../market
-            dockerfile: ../market/_docker/app/Dockerfile
+            args:
+                user: raul
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        image: market
+        container_name: market-app
+        restart: unless-stopped
+        working_dir: /var/www/
         volumes:
             - ./:/var/www
-        depends_on:
-            - db
-        container_name: project_app
-
+        networks:
+            - market
     db:
         image: mysql:8.0
-        restart: always
-        volumes:
-            - ./tmp/db:/var/lib/mysql
+        container_name: market-db
+        restart: unless-stopped
         environment:
-            MYSQL_DATABASE: market
-            MYSQL_ROOT_PASSWORD: root
-        ports:
-            - 8101:3306
-        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-        container_name: project_db
-
-    # Для сборки js
-    node:
-        build:
-            context: ../market
-            dockerfile: ../market/_docker/nodejs/Dockerfile
-        command: sh -c "npm install && npm run build && http-server dist"
-        tty: true
-        ports:
-            - "8080:8080"
-        working_dir: /var/www
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
         volumes:
-            - .:/var/www # Монтируем локальную папку в контейнер как /var/www
-
+            - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+        networks:
+            - market
+    nginx:
+        image: nginx:1.17-alpine
+        container_name: market-nginx
+        restart: unless-stopped
+        ports:
+            - 8000:80
+        volumes:
+            - ./:/var/www
+            - ./docker-compose/nginx:/etc/nginx/conf.d
+        networks:
+            - market
+networks:
+    travellist:
+        driver: bridge
