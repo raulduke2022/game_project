@@ -42,5 +42,5 @@ services:
         networks:
             - market
 networks:
-    travellist:
+    market:
         driver: bridge
