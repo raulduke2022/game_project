@@ -13,7 +13,13 @@ class Game extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function images() {
+    public function images()
+    {
         return $this->hasMany(Image::class);
+    }
+
+    public function order()
+    {
+        return $this->hasOne(Order::class);
     }
 }

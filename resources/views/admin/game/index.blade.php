@@ -23,6 +23,7 @@
                     <th scope="col" class="col-md-2">Название</th>
                     <th scope="col" class="col-md-4">Описание</th>
                     <th scope="col">Цена</th>
+                    <th scope="col">Статус заказа</th>
                     <th scope="col" class="col-md-2">Действия</th>
                 </tr>
                 </thead>
@@ -33,6 +34,7 @@
                         <td class="table-td">{{ $game->title }}</td>
                         <td class="table-td">{{ $game->description }}</td>
                         <td class="table-td">{{ $game->price }}</td>
+                        <td class="table-td" style="color: green">{{ $game->order && $game->order->is_done ? 'Продан' : '' }}</td>
                         <td>
                             <a href="{{ route('games.show', $game->id) }}" class="btn btn-success">
                                 <i class="fa-solid fa-eye"></i>

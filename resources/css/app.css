@@ -17,6 +17,11 @@ html {
     border-radius: 2px;
 }
 
+.nav-link {
+    margin-top: 1rem;
+    transition: box-shadow 0.3s ease;
+}
+
 .navbar {
     box-shadow: 2px 2px 2px 2px green;
     height: 3rem;
@@ -29,19 +34,15 @@ html {
     box-shadow: 2px 2px 2px 2px green;
 }
 
-.nav-link {
-    margin-top: 1rem;
+.sidebar {
+    width: 17.5rem;
+    height: var(--main-height);
 }
 
 .main-col {
     margin: 0 1rem;
     overflow: auto;
     max-height: var(--main-height);
-}
-
-.sidebar {
-    width: 17.5rem;
-    height: var(--main-height);
 }
 
 footer {
@@ -86,8 +87,11 @@ footer {
     text-decoration: none;
 }
 
-/*.logout-link a:hover,*/
-/*.logout-link a:active {*/
-/*    box-shadow: 2px 2px 2px 2px green;*/
-/*    border-radius: 2px;*/
-/*}*/
+.dropdown-item:hover {
+    transition: background-color 0.3s ease-in-out;
+}
+
+.dropdown-item:hover {
+    background-color: #5dbea3;
+    border-radius: 4px;
+}
