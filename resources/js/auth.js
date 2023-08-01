@@ -5,7 +5,7 @@
  */
 
 import './bootstrap';
-import 'resources/sass/app.scss';
+import '../sass/app.scss';
 
 import { createApp } from 'vue';
 
