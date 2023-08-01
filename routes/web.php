@@ -7,6 +7,10 @@ use App\Http\Controllers\Order\IndexController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::get('test', function () {
+    return view('payeer.test');
+});
+
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('games', GameController::class);
     Route::get('/', [GameController::class,'index'])->name('admin');
