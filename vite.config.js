@@ -25,12 +25,4 @@ export default defineConfig({
             vue: 'vue/dist/vue.esm-bundler.js',
         },
     },
-    build: {
-        rollupOptions: {
-            input: {
-                app: 'resources/js/app.js',
-                auth: 'resources/js/auth.js',
-            },
-        },
-    },
 });
