@@ -1,19 +1,18 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 
 const routes = [
     {
-        path: '/market',
-        name: 'Game',
-        component: () => import('./components/games/GamesList.vue'),
-        children: [
-            {
-                path: '/games/:id',
-                component: () => import('./pages/GamePage.vue'),
-                name: 'GamePage'
-            }
-        ]
+        path: '/market/games/:id',
+        component: () => import('./pages/GamePage.vue',),
+        props: true,
+        name: 'GamePage'
     },
-    { path: '/:notFound(.*)', component: () => import('./components/NotFound.vue') }
+    {
+        path: '/market',
+        component: () => import('./components/games/GamesList.vue'),
+        name: 'Game',
+    },
+    {path: '/:notFound(.*)', component: () => import('./components/NotFound.vue')}
 ]
 
 const router = createRouter({

@@ -1,5 +1,7 @@
 <template>
     <div>
+        <header>
+        </header>
         <ul class="main-container">
             <li v-for="game in games" :key="game.id">
                 <game-detail :title="game.title" :price="game.price" :id="game.id"></game-detail>
@@ -39,7 +41,7 @@ export default {
         async loadGames() {
             this.$store.dispatch('toggleLoading')
             try {
-                await this.$store.dispatch('games/fetchData');
+                await this.$store.dispatch('games/fetchGamesData');
             } catch (error) {
                 this.error = error.message || 'Something went wrong!';
             }
@@ -51,7 +53,7 @@ export default {
         async loadMore() {
             this.$store.dispatch('toggleLoading')
             try {
-                await this.$store.dispatch('games/fetchData', this.nextPage)
+                await this.$store.dispatch('games/fetchGamesData', this.nextPage)
             } catch (error) {
                 this.error = error.message || 'Something went wrong!';
             }
@@ -68,6 +70,20 @@ export default {
 
 <style scoped>
 
+header {
+    background-image: url("../../back.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    grid-area: header;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    height: 30rem;
+    border-bottom: green 2px solid;
+}
+
+
 .main-container {
     display: grid;
     margin: 0 15rem;
@@ -79,6 +95,8 @@ export default {
     display: flex;
     justify-content: center;
     align-content: center;
+    margin-bottom: 0.5rem;
 }
+
 
 </style>

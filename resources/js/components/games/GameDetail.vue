@@ -1,6 +1,6 @@
 <template>
     <section>
-        <router-link to="/market/games/1">
+        <router-link :to="{ name: 'GamePage', params: {id: id}}">
             <base-card :title="title" :price="price">
             </base-card>
         </router-link>

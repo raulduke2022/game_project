@@ -16,17 +16,17 @@ class GamesController extends Controller
         $this->middleware(ValidateGameData::class)->only('create', 'store', 'update');
     }
 
-    public function index(Request $request) :JsonResponse
+    public function index() :JsonResponse
     {
         $games = DB::table('games')->paginate(9);
         return response()->json($games);
     }
 
-    public function store(Request $request) :JsonResponse
-    {
-        $game = Game::create($request->all());
-        return response()->json($game, 201);
-    }
+//    public function store(Request $request) :JsonResponse
+//    {
+//        $game = Game::create($request->all());
+//        return response()->json($game, 201);
+//    }
 
 
     public function show(Game $game) :JsonResponse
@@ -35,18 +35,18 @@ class GamesController extends Controller
     }
 
 
-    public function update(Request $request, Game $game) :JsonResponse
-    {
-        $validatedData = $request->all();
+//    public function update(Request $request, Game $game) :JsonResponse
+//    {
+//        $validatedData = $request->all();
+//
+//        $game->update($validatedData);
+//        return response()->json($game);
+//    }
 
-        $game->update($validatedData);
-        return response()->json($game);
-    }
 
-
-    public function destroy(Game $game) :JsonResponse
-    {
-        $game->delete();
-        return response()->json(null, 204);
-    }
+//    public function destroy(Game $game) :JsonResponse
+//    {
+//        $game->delete();
+//        return response()->json(null, 204);
+//    }
 }

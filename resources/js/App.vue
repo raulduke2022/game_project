@@ -1,12 +1,10 @@
 <template>
     <base-spinner v-if="isLoading" class="spinner"></base-spinner>
     <div class="container" v-show="!isLoading">
-        <header v-if="!isFirstLoad">
-        </header>
         <main>
             <router-view @scrollMe="scrollToBottom"></router-view>
         </main>
-        <footer class="footer-container" v-if="!isFirstLoad">
+        <footer class="footer-container">
             <router-link :to="{name: 'Game'}" class="footer-link">О нас</router-link>
             <router-link :to="{name: 'Game'}" class="footer-link">Политика конфиденциальности</router-link>
         </footer>
@@ -15,18 +13,6 @@
 
 <script>
 export default {
-    watch: {
-        isLoading(newVal) {
-            if (newVal) {
-                this.isFirstLoad = false;
-            }
-        },
-    },
-    data() {
-        return {
-            isFirstLoad: true,
-        }
-    },
     computed: {
         isLoading() {
             return this.$store.getters.isLoading;
@@ -76,23 +62,10 @@ body {
     box-sizing: border-box;
 }
 
-header {
-    background-image: url("back.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    grid-area: header;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    height: 30rem;
-    border-bottom: green 2px solid;
-}
 
 main {
     background-color: black;
     grid-area: main;
-    padding: 20px;
 }
 
 footer {
