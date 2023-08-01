@@ -86,8 +86,10 @@ header {
 
 .main-container {
     display: grid;
-    margin: 0 15rem;
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    margin: 0 1rem;
+    //grid-template-columns: repeat(auto-fit, max(20rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 30rem));
+    grid-gap: 0;
     list-style: none;
 }
 
@@ -98,5 +100,9 @@ header {
     margin-bottom: 0.5rem;
 }
 
+ul {
+    display: flex;
+    justify-content: space-around;
+}
 
 </style>
