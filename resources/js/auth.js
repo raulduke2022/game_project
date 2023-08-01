@@ -6,6 +6,7 @@
 
 import './bootstrap';
 import '../sass/app.scss';
+import '../css/app.css';
 
 import { createApp } from 'vue';
 
