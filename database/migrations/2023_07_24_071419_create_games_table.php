@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->text('description')->nullable()->default('');
+            $table->text('description')->nullable();
             $table->decimal('price', 8,2)->nullable();
             $table->string('key')->nullable();
             $table->timestamps();
