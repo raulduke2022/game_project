@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 
 class PayeerController extends Controller
 {
+    protected $game;
+
     public function payment(Game $game)
     {
+        $this->game = $game;
+
         $m_shop = '1926311116';
         $m_key = '123';
         $m_orderid = '1';
@@ -101,7 +105,7 @@ class PayeerController extends Controller
 
     public function success()
     {
-        return view('')
+//        return redirect()
     }
 
     public function fail()
