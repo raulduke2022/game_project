@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="game-main">
-            <div class="game-card">
+            <div class="game-card" v-if="game">
                 <game-card :title="game.title" :price="game.price" :description="game.description"></game-card>
             </div>
             <div class="buy-form">
