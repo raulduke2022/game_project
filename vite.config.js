@@ -7,7 +7,8 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/js/app.js',
-                'resources/js/auth.js'
+                'resources/js/auth.js',
+                'resources/js/payeer.js'
             ],
             refresh: true,
         }),
