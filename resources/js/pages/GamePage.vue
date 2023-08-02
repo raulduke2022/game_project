@@ -2,7 +2,7 @@
     <div class="container">
         <div class="game-main">
             <div class="game-card">
-                <game-card></game-card>
+                <game-card :title="game.title" :price="game.price" :description="game.description"></game-card>
             </div>
             <div class="buy-form">
                 <base-form><game-button class="button" @click="buy">Купить</game-button></base-form>
