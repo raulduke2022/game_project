@@ -72,7 +72,7 @@
         <input type="hidden" name="form[curr[2609]]" value="RUB">
         <input type="hidden" name="m_params" value="<?= $m_params ?>">
         <input type="hidden" name="m_cipher_method" value="AES-256-CBC">
-        <button class="button" type="submit" name="m_process" value="send"><span class="text">Перейти на страницу оплаты</span></button>
+        <button class="button" type="submit" name="m_process" value="send"><span class="text">Перейти</span></button>
     </form>
 </div>
 </body>
