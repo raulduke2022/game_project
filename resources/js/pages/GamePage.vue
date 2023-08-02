@@ -36,9 +36,8 @@ export default {
             return this.$store.getters['games/game'];
         },
         slides() {
-            const game  = this.$store.getters['games/game'];
-            if (game) {
-                console.log(game.images);
+            const game = this.$store.getters['games/game'];
+            if (game && game.images.length) {
                 return game.images
             }
         }
@@ -66,12 +65,13 @@ export default {
     background: linear-gradient(to right, #034378, #2d4e68);
     display: grid;
     grid-template-areas: "main" "slider";
-    grid-template-rows: auto;
+    grid-template-rows: 1fr auto;
+    justify-content: center;
 }
 
 .slider {
     grid-area: slider;
-    margin: 2rem 25rem;
+    margin: 2rem 2rem;
 }
 
 .buy-form {
