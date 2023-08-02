@@ -3,7 +3,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 const routes = [
     {
         path: '/market/games/:id',
-        component: () => import('./pages/GamePage.vue',),
+        component: () => import('./pages/GamePage.vue'),
         props: true,
         name: 'GamePage'
     },

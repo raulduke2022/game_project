@@ -1,17 +1,16 @@
 <template>
     <section>
         <router-link :to="{ name: 'GamePage', params: {id: id}}">
-            <base-card :title="title" :price="price">
-            </base-card>
+            <game-card></game-card>
         </router-link>
     </section>
 </template>
 
 <script>
-import BaseButton from "@/components/ui/BaseButton.vue";
+import GameCard from "@/components/ui/GameCard.vue";
 
 export default {
-    components: {BaseButton},
+    components: {GameCard},
     props: ['id', 'title', 'price'],
 }
 
