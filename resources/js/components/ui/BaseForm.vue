@@ -8,7 +8,7 @@
             <input type="text" class="name formEntry" placeholder="Электронная почта"/>
             <input type="checkbox" class="termsConditions" value="Term">
             <label style="color: grey" for="terms"> I Accept the <span style="color: #0e3721">Terms of Use</span> & <span style="color: #0e3721">Privacy Policy</span>.</label><br>
-            <game-button class="button">Купить</game-button>
+            <slot></slot>
         </form>
     </div>
 </template>

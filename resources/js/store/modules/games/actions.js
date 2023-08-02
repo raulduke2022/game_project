@@ -22,6 +22,5 @@ export default {
         }
 
         context.commit('setGame', responseData);
-    },
-
+    }
 }

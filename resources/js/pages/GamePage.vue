@@ -5,7 +5,7 @@
                 <game-card></game-card>
             </div>
             <div class="buy-form">
-                <base-form></base-form>
+                <base-form><game-button class="button" @click="buy">Купить</game-button></base-form>
             </div>
         </div>
         <div v-if="slides" class="slider">
@@ -52,6 +52,9 @@ export default {
             }
             this.$store.dispatch('toggleLoading')
         },
+        buy() {
+            window.location.href = "/buy"
+        }
     },
     created() {
         this.loadGameInfo()

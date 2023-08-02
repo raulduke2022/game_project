@@ -20,7 +20,6 @@ export default {
     },
     methods: {
         scrollToBottom() {
-            console.log('hello');
             this.$nextTick(() => {
                 window.scrollTo({
                     left: 0,

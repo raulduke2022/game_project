@@ -7,8 +7,8 @@ use App\Http\Controllers\Order\IndexController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('test', function () {
-    return view('payeer.test');
+Route::get('buy', function () {
+    return view('payeer.payment');
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {
