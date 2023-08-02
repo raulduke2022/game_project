@@ -1,15 +1,15 @@
 <template>
     <div>
-        <header>
+        <header v-if="!isLoading">
         </header>
         <ul class="main-container">
             <li v-for="game in games" :key="game.id">
-                <game-detail :title="game.title" :price="game.price" :id="game.id"></game-detail>
+                <game-detail :title="game.title" :price="game.price" :description="game.description" :id="game.id"></game-detail>
             </li>
         </ul>
     </div>
     <div class="button">
-        <base-button @click="loadMore" v-if="nextPage">Показать еще</base-button>
+        <game-button @click="loadMore" v-if="nextPage"><h3>Показать еще</h3></game-button>
     </div>
 </template>
 
@@ -76,7 +76,6 @@ header {
     background-repeat: no-repeat;
     background-size: 100%;
     grid-area: header;
-    background-color: black;
     color: #fff;
     text-align: center;
     height: 30rem;
@@ -87,7 +86,6 @@ header {
 .main-container {
     display: grid;
     margin: 0 1rem;
-    //grid-template-columns: repeat(auto-fit, max(20rem, 1fr));
     grid-template-columns: repeat(auto-fit, minmax(10rem, 30rem));
     grid-gap: 0;
     list-style: none;
@@ -97,7 +95,7 @@ header {
     display: flex;
     justify-content: center;
     align-content: center;
-    margin-bottom: 0.5rem;
+    margin: 0.8rem 0;
 }
 
 ul {

@@ -43,7 +43,7 @@ class Service
                 if ($request->hasFile('attachment')) {
                     foreach ($files as $file) {
                         $destination = $file->store('public/games/' . $game->id);
-                        $imagePath = str_replace('public/', '', $destination);
+                        $imagePath = str_replace('public/', 'storage/', $destination);
                         Image::create([
                             'path' => $imagePath,
                             'game_id' => $game->id,
@@ -53,7 +53,7 @@ class Service
                 }
             });
 
-            Artisan::call('storage:link');
+//            Artisan::call('storage:link');
             session()->flash('success', 'Запись успешно ' . ($game ? 'обновлена' : 'создана'));
             return redirect($game ? route('games.show', $game->id) : route('games.index'));
         } catch (\Exception $e) {

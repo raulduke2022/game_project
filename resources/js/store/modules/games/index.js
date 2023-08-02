@@ -7,6 +7,7 @@ export default {
         return {
             games: [],
             nextPage: null,
+            game: null,
         };
     },
     mutations,

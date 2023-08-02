@@ -4,5 +4,8 @@ export default {
     },
     setNextPage(state,payload) {
         state.nextPage = payload
+    },
+    setGame(state, payload) {
+        state.game = payload;
     }
 };

@@ -38,7 +38,7 @@
                     <tr>
                         <th scope="row">{{ $loop->iteration + $orders->firstItem() - 1 }}</th>
                         <td class="table-td">{{ $order->payeer }}</td>
-                        <td class="table-td"><a href="{{ route('games.show', $order->game->id) }}" style="text-decoration: none; color:green">{{ $order->game->title }}</a></td>
+                        <td class="table-td"><a href="{{ route('games.show', $order->game && $order->game->id) }}" style="text-decoration: none; color:green">{{ $order->game && $order->game->title }}</a></td>
                         <td @if($order->id == session('id')) class="table-td bg-warning"
                             @else class="table-td" @endif>{{ $order->is_done ? "Обработан" : "Новый"}}</td>
                         <td>

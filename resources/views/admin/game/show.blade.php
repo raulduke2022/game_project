@@ -51,15 +51,15 @@
                 <div class="row h-25 overflow-auto image-row m-2">
                     @foreach($images as  $index => $image)
                         <div class="col-md-4 p-2">
-                            <a href="{{ asset('storage/'. $image->path) }}">{{ $image->title }}</a>
-                            <form action="{{ route('images.destroy', $image->id) }}" method="POST"
-                                  style="display: inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </form>
+                            <a href="{{ asset($image->path) }}">{{ $image->title }}</a>
+{{--                            <form action="{{ route('images.destroy', $image->id) }}" method="POST"--}}
+{{--                                  style="display: inline-block">--}}
+{{--                                @csrf--}}
+{{--                                @method('DELETE')--}}
+{{--                                <button type="submit" class="btn btn-danger">--}}
+{{--                                    <i class="fa fa-trash"></i>--}}
+{{--                                </button>--}}
+{{--                            </form>--}}
                         </div>
                     @endforeach
                 </div>

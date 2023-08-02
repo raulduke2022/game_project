@@ -70,7 +70,7 @@
                         <div class="row h-25 overflow-auto image-row m-2">
                             @foreach($images as  $index => $image)
                                 <div class="col-md-4 p-3">
-                                    <a href="{{ asset('storage/'. $image->path) }}">{{ $image->title }}</a>
+                                    <a href="{{ asset($image->path) }}">{{ $image->title }}</a>
                                     <form action="{{ route('images.destroy', $image->id) }}" method="POST"
                                           style="display: inline-block">
                                         @csrf

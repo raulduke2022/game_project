@@ -4,5 +4,8 @@ export default {
     },
     nextPage(state) {
         return state.nextPage;
+    },
+    game(state) {
+        return state.game;
     }
 };

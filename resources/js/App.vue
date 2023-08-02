@@ -54,7 +54,6 @@ export default {
 
 
 body {
-    z-index: -1;
     margin: 0;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
@@ -64,9 +63,8 @@ body {
 
 
 main {
-    background-color: black;
-    grid-area: main;
 }
+
 
 footer {
     border-top: green 2px solid;
@@ -89,7 +87,9 @@ footer {
     color: white
 }
 
-a { text-decoration: none; }
+a {
+    text-decoration: none;
+}
 
 
 </style>

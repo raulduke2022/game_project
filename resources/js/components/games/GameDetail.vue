@@ -1,7 +1,8 @@
 <template>
     <section>
         <router-link :to="{ name: 'GamePage', params: {id: id}}">
-            <game-card></game-card>
+            <game-card :title="title" :price="price" :description="description"><a href="#" class="button">Посмотреть</a>
+            </game-card>
         </router-link>
     </section>
 </template>
@@ -11,7 +12,7 @@ import GameCard from "@/components/ui/GameCard.vue";
 
 export default {
     components: {GameCard},
-    props: ['id', 'title', 'price'],
+    props: ['id', 'title', 'price', 'description'],
 }
 
 </script>
