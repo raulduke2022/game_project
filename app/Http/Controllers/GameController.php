@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\GameUpdateRequest;
+use App\Http\Requests\GameRequest;
 use App\Models\Game;
 
 class GameController extends BaseController
@@ -18,7 +18,7 @@ class GameController extends BaseController
         return view('admin/game/create');
     }
 
-    public function store(GameUpdateRequest $request)
+    public function store(GameRequest $request)
     {
         return $this->service->createOrUpdate($request);
     }
@@ -35,7 +35,7 @@ class GameController extends BaseController
         return view('admin/game/edit', compact('game', 'images'));
     }
 
-    public function update(GameUpdateRequest $request, Game $game)
+    public function update(GameRequest $request, Game $game)
     {
         return $this->service->createOrUpdate($request, $game);
     }

@@ -10,6 +10,11 @@
                 Заказы
             </a>
         </li>
+        <li>
+            <a href="{{ route('configs.index') }}" class="nav-link text-white">
+                Настройки Payeer
+            </a>
+        </li>
     </ul>
     <hr>
 </div>

@@ -2,7 +2,7 @@
 
 namespace App\Services\GameImage;
 
-use App\Http\Requests\GameUpdateRequest;
+use App\Http\Requests\GameRequest;
 use App\Models\Game;
 use App\Models\Image;
 use Illuminate\Support\Facades\Artisan;
@@ -19,7 +19,7 @@ class Service
         $image->delete();
     }
 
-    public function createOrUpdate(GameUpdateRequest $request, Game $game = null)
+    public function createOrUpdate(GameRequest $request, Game $game = null)
     {
         try {
             DB::transaction(function () use ($request, $game) {

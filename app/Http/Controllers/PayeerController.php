@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Config;
 use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -9,16 +10,25 @@ use Illuminate\Support\Facades\Log;
 class PayeerController extends Controller
 {
     protected $game;
+    protected $config;
+
+    public function __construct()
+    {
+        $this->config = Config::first();
+    }
 
     public function payment(Game $game)
     {
+        $domain = request()->getHost();
+        Log::info($domain . ' получили домен');
+
         $this->game = $game;
 
-        $m_shop = '1926311116';
-        $m_key = '123';
+        $m_shop = $this->config->shop;
+        $m_key = $this->config->key;
         $m_orderid = '1';
-        $m_amount = number_format($game->price, 2, '.', '');
-        $m_curr = 'RUB';
+        $m_amount = number_format($this->game->price, 2, '.', ''); //продумать
+        $m_curr = $this->config->curr;
         $m_desc = base64_encode('Test'); //добавить описание  Переменная m_desc должна обязательно содержать кодированный с помощью base64_encode текст
 
 
@@ -32,9 +42,9 @@ class PayeerController extends Controller
 
 
         $arParams = array(
-            'success_url' => 'http://testyoursite.ru/test/success',
-            'fail_url' => 'http://testyoursite.ru/test/fail',
-            'status_url' => 'http://testyoursite.ru/test/handler',
+            'success_url' => 'http://' . $domain . '/success',
+            'fail_url' => 'http://' . $domain . '/fail',
+            'status_url' => 'http://' . $domain . '/handler',
             'reference' => array(
                 'id' => $game->id,
                 //'var2' => '2',
@@ -45,7 +55,7 @@ class PayeerController extends Controller
             //'submerchant' => 'mail.com',
         );
 
-        $key = md5('1234' . $m_orderid);
+        $key = md5($this->config->extra_key . $m_orderid);
 
         $m_params = @urlencode(base64_encode(openssl_encrypt(json_encode($arParams), 'AES-256-CBC', $key, OPENSSL_RAW_DATA)));
 
@@ -72,7 +82,7 @@ class PayeerController extends Controller
         if (!in_array($_SERVER['REMOTE_ADDR'], array('185.71.65.92', '185.71.65.189', '149.202.17.210'))) return;
 
         if (isset($_POST['m_operation_id']) && isset($_POST['m_sign'])) {
-            $m_key = 'Ваш секретный ключ';
+            $m_key = $this->config->shop;
 
             $arHash = array(
                 $_POST['m_operation_id'],
@@ -97,22 +107,29 @@ class PayeerController extends Controller
 
             if ($_POST['m_sign'] == $sign_hash && $_POST['m_status'] == 'success') {
                 ob_end_clean();
+
+                Log::info('Обращение к маршруту /handler + success');
+
+
                 exit($_POST['m_orderid'] . '|success');
             }
 
             ob_end_clean();
+            Log::info('Обращение к маршруту /handler + error');
+
             exit($_POST['m_orderid'] . '|error');
+
         }
     }
 
     public function success()
     {
-//        return redirect()
+        return view('payeer/success');
     }
 
     public function fail()
     {
-
+        return view('payeer/fail');
     }
 
 }

@@ -17,21 +17,21 @@
                 <div class="form-group">
                     <label for="title">Название игры</label>
                     <input type="text" class="form-control m-2" name="title" id="title"
-                           value="{{ old('title', $game->title) }}">
+                           value="{{ $game->title }}">
                 </div>
             </div>
             <div class="col-auto">
                 <div class="form-group">
                     <label for="price">Цена</label>
                     <input type="number" class="form-control m-2" name="price" id="price"
-                           value="{{ old('price', $game->price) }}">
+                           value="{{ $game->price }}">
                 </div>
             </div>
             <div class="col-auto">
                 <div class="form-group">
                     <label for="key">Ключ</label>
                     <textarea rows="2" class="form-control m-2" name="key"
-                              id="key">{{ old('key', $game->key) }}</textarea>
+                              id="key">{{ $game->key }}</textarea>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
             <div class="form-group w-50">
                 <label for="description">Описание</label>
                 <textarea rows="3" class="form-control m-2" name="description"
-                          id="description">{{ old('description', $game->description) }}</textarea>
+                          id="description">{{ $game->description }}</textarea>
             </div>
         </div>
                             {{--                        <img style="height: 8rem; width: 8rem" class="img-fluid"--}}
