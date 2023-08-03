@@ -27,7 +27,7 @@ class PayeerController extends Controller
         $m_shop = $this->config->shop;
         $m_key = $this->config->key;
         $m_orderid = '1';
-        $m_amount = number_format($this->game->price, 2, '.', ''); //продумать
+        $m_amount = number_format(1, 2, '.', ''); //продумать
         $m_curr = $this->config->curr;
         $m_desc = base64_encode('Test'); //добавить описание  Переменная m_desc должна обязательно содержать кодированный с помощью base64_encode текст
 
@@ -124,12 +124,12 @@ class PayeerController extends Controller
 
     public function success()
     {
-        return view('payeer/success');
+        return redirect()->route('market');
     }
 
     public function fail()
     {
-        return view('payeer/fail');
+        return redirect()->route('market');
     }
 
 }
