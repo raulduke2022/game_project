@@ -129,7 +129,7 @@ class PayeerController extends Controller
 
     public function fail()
     {
-        return redirect()->route('market');
+        return view('payeer/fail');
     }
 
 }
