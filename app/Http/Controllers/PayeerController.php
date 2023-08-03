@@ -124,12 +124,12 @@ class PayeerController extends Controller
 
     public function success()
     {
-        return redirect()->route('market');
+        return redirect()->back()->back();
     }
 
     public function fail()
     {
-        return redirect()->route('market');
+        return redirect()->back()->back();
     }
 
 }
