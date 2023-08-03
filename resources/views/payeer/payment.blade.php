@@ -9,7 +9,7 @@
     <title>Market</title>
 </head>
 <body>
-<div id="app" class="mb-5">
+<div id="payeer" class="mb-5">
     <br><br><br>
     <h1>Секунду ...</h1>
     <div class="slider">
