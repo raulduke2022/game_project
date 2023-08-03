@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PayeerController extends Controller
 {
@@ -67,6 +68,7 @@ class PayeerController extends Controller
 
     public function handle()
     {
+        Log::info('Обращение к маршруту /handler');
         if (!in_array($_SERVER['REMOTE_ADDR'], array('185.71.65.92', '185.71.65.189', '149.202.17.210'))) return;
 
         if (isset($_POST['m_operation_id']) && isset($_POST['m_sign'])) {
