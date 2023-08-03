@@ -8,7 +8,7 @@ export default defineConfig({
             input: [
                 'resources/js/app.js',
                 'resources/js/auth.js',
-                'resources/js/config.js'
+                'resources/js/payeer.js'
             ],
             refresh: true,
         }),
