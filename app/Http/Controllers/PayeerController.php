@@ -106,18 +106,17 @@ class PayeerController extends Controller
             $sign_hash = strtoupper(hash('sha256', implode(':', $arHash)));
 
             if ($_POST['m_sign'] == $sign_hash && $_POST['m_status'] == 'success') {
-                ob_end_clean();
+                if (ob_get_contents()) ob_end_clean();
 
                 Log::info('Обращение к маршруту /handler + success');
 
-
-                echo($_POST['m_orderid'] . '|success');
+                exit($_POST['m_orderid'] . '|success');
             }
 
-            ob_end_clean();
+            if (ob_get_contents()) ob_end_clean();
             Log::info('Обращение к маршруту /handler + error');
 
-            echo($_POST['m_orderid'] . '|error');
+            exit($_POST['m_orderid'] . '|error');
 
         }
     }
