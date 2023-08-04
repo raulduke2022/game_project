@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class StoreController extends Controller
 {
-    public function __invoke($payeer, $id)
+    public function __invoke($id)
     {
         $newOrder = Order::create(
             [
