@@ -6,7 +6,7 @@
         </main>
         <footer class="footer-container">
             <router-link :to="{name: 'Game'}" class="footer-link">О нас</router-link>
-            <router-link :to="{name: 'Game'}" class="footer-link">Политика конфиденциальности</router-link>
+            <router-link :to="{name: 'Game'}" class="footer-link">Правила сайта</router-link>
         </footer>
     </div>
 </template>
@@ -20,11 +20,11 @@ export default {
     },
     methods: {
         scrollToBottom() {
+            const height = this.$store.getters.scrollHeight;
             this.$nextTick(() => {
                 window.scrollTo({
                     left: 0,
-                    top: document.body.scrollHeight,
-                    // behavior: "smooth"
+                    top: height,
                 });
             })
         },

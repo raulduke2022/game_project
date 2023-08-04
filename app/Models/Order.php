@@ -18,6 +18,6 @@ class Order extends Model
     }
 
     public function isDone() {
-        return $this->getAttribute('is_done');
+        return $this->getAttribute('status') === 'success';
     }
 }

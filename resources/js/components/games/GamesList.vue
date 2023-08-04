@@ -2,14 +2,14 @@
     <div>
         <header v-if="!isLoading">
         </header>
-        <ul class="main-container">
+        <ul class="main-container" id="main-container">
             <li v-for="game in games" :key="game.id">
                 <game-detail :title="game.title" :price="game.price" :description="game.description" :id="game.id"></game-detail>
             </li>
         </ul>
     </div>
     <div class="button">
-        <game-button @click="loadMore" v-if="nextPage"><h3>Показать еще</h3></game-button>
+        <game-button @click="loadMore" v-if="nextPage"><h3 id="button">Показать еще</h3></game-button>
     </div>
 </template>
 
@@ -51,6 +51,12 @@ export default {
             this.error = null;
         },
         async loadMore() {
+            const element = document.getElementById('button');
+            const container = document.getElementById('main-container')
+            const yPosition = container.scrollHeight + element.scrollHeight;
+            this.$store.dispatch('updateScrollHeight', yPosition)
+
+            const scrollHeight = Math.max(document.body.scrollHeight, document.body.clientHeight);
             this.$store.dispatch('toggleLoading')
             try {
                 await this.$store.dispatch('games/fetchGamesData', this.nextPage)
@@ -59,6 +65,7 @@ export default {
             }
             this.$store.dispatch('toggleLoading');
             this.$emit('scrollMe')
+
         }
     },
     created() {
