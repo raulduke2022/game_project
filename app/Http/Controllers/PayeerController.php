@@ -82,7 +82,7 @@ class PayeerController extends Controller
         if (!in_array($_SERVER['REMOTE_ADDR'], array('185.71.65.92', '185.71.65.189', '149.202.17.210'))) return;
 
         if (isset($_POST['m_operation_id']) && isset($_POST['m_sign'])) {
-            $m_key = $this->config->shop;
+            $m_key = $this->config->key;
 
             $arHash = array(
                 $_POST['m_operation_id'],
@@ -111,13 +111,13 @@ class PayeerController extends Controller
                 Log::info('Обращение к маршруту /handler + success');
 
 
-                exit($_POST['m_orderid'] . '|success');
+                echo($_POST['m_orderid'] . '|success');
             }
 
             ob_end_clean();
             Log::info('Обращение к маршруту /handler + error');
 
-            exit($_POST['m_orderid'] . '|error');
+            echo($_POST['m_orderid'] . '|error');
 
         }
     }
