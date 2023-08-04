@@ -27,7 +27,7 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col" class="col-md-2">Название</th>
+                    <th scope="col" class="col-md-2">Номер заявки</th>
                     <th scope="col">Игра</th>
                     <th scope="col" class="col-md-4">Статус</th>
                     <th scope="col" class="col-md-2">Действия</th>
@@ -37,8 +37,8 @@
                 @foreach($orders as $index => $order)
                     <tr>
                         <th scope="row">{{ $loop->iteration + $orders->firstItem() - 1 }}</th>
-                        <td class="table-td">{{ $order->payeer }}</td>
-                        <td class="table-td"><a href="{{ route('games.show', $order->game && $order->game->id) }}" style="text-decoration: none; color:green">{{ $order->game && $order->game->title }}</a></td>
+                        <td class="table-td">{{ $order->id }}</td>
+                        <td class="table-td"><a href="{{ route('games.show', $order->game && $order->game->id) }}" style="text-decoration: none; color:green">{{ $order->game ? $order->game->title : "" }}</a></td>
                         <td @if($order->id == session('id')) class="table-td bg-warning"
                             @else class="table-td" @endif>{{ $order->is_done ? "Обработан" : "Новый"}}</td>
                         <td>
