@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Order\StoreController;
 use App\Models\Config;
 use App\Models\Game;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -19,14 +21,15 @@ class PayeerController extends Controller
 
     public function payment(Game $game)
     {
-        $domain = request()->getHost();
-        Log::info($domain . ' получили домен');
+        $newOrder = new StoreController(); //создаем заказ
+        Game::setReserved(); //резервируем
 
+        $domain = request()->getHost();
         $this->game = $game;
 
         $m_shop = $this->config->shop;
         $m_key = $this->config->key;
-        $m_orderid = '1';
+        $m_orderid = $newOrder->id;
         $m_amount = number_format(1, 2, '.', ''); //продумать
         $m_curr = $this->config->curr;
         $m_desc = base64_encode('Test'); //добавить описание  Переменная m_desc должна обязательно содержать кодированный с помощью base64_encode текст
@@ -109,12 +112,14 @@ class PayeerController extends Controller
                 if (ob_get_contents()) ob_end_clean();
 
                 Log::info('Обращение к маршруту /handler + success');
+                Log::info('Параметры POST: ' . var_export($_POST, true));
 
                 exit($_POST['m_orderid'] . '|success');
             }
 
             if (ob_get_contents()) ob_end_clean();
             Log::info('Обращение к маршруту /handler + error');
+            Log::info('Параметры POST: ' . var_export($_POST, true));
 
             exit($_POST['m_orderid'] . '|error');
 

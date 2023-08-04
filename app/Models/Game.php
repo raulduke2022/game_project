@@ -22,4 +22,10 @@ class Game extends Model
     {
         return $this->hasOne(Order::class);
     }
+
+    public function setReserved()
+    {
+        $this->reserved = true;
+        $this->save();
+    }
 }

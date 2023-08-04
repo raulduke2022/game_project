@@ -21,9 +21,7 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'is_done' => $this->faker->boolean,
             'game_id' => $this->faker->numberBetween(1, 100),
-            'payeer' => Str::random(10),
         ];
     }
 }

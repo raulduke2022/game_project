@@ -12,12 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->string('payeer')->nullable();
-            $table->boolean('is_done')->default(false);
+            $table->id()->from(10000);
+            $table->string('payeer_operation_id')->nullable();
+            $table->string('operation_ps')->nullable();
+            $table->dateTime('operation_date')->nullable();
+            $table->dateTime('operation_pay_date')->nullable();
+            $table->bigInteger('amount')->nullable();
+            $table->string('curr')->nullable();
+            $table->string('desc')->nullable();
+            $table->string('status')->nullable();
+            $table->string('user_email')->nullable(); //получаем от vue
+            $table->string('user_ip')->nullable();
+            $table->string('user_agent')->nullable();
             $table->unsignedBigInteger('game_id');
-            $table->timestamps();
             $table->foreign('game_id')->references('id')->on('games');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
