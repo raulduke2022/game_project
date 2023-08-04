@@ -22,7 +22,7 @@ class PayeerController extends Controller
     public function payment(Game $game)
     {
         $newOrder = new StoreController(); //создаем заказ
-        Game::setReserved(); //резервируем
+        $game::setReserved(); //резервируем
 
         $domain = request()->getHost();
         $this->game = $game;
