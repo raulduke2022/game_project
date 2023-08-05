@@ -126,7 +126,6 @@ class PayeerController extends Controller
                     'curr' => $_POST['m_curr'],
                     'desc' => $_POST['m_desc'],
                     'status' => $_POST['m_status'],
-                    'game_id' => $referenceId
                 ]);
                 Log::info('Параметры POST: ' . var_export($_POST, true));
 
