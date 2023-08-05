@@ -14,9 +14,9 @@ class IndexController extends Controller
         $records = Order::query();
 
         if ($isDone === 'true') {
-            $records->where('status', 'success');
+            $records->where('is_done', true);
         } elseif ($isDone === 'false') {
-            $records->whereNotIn('status', ['success'])->orWhereNull('status');;
+            $records->whereNotIn('is_done', false);
         }
         $orders = $records->with('game')->orderBy('created_at', 'desc')->paginate(10); //eager loading
         $orders->appends(['is_done' => $isDone]);
