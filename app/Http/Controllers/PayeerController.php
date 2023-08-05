@@ -121,7 +121,7 @@ class PayeerController extends Controller
                    'operation_pay_date' => $_POST['m_operation_pay_date'],
                    'payeer_opeamountration_id' => $_POST['m_shop'],
                    'amount' => $_POST['m_amount'],
-                   'curr' => $_POST['curr'],
+                   'curr' => $_POST['m_curr'],
                    'desc' => $_POST['m_desc'],
                    'status' => $_POST['m_status'],
                 ]);
