@@ -117,6 +117,7 @@ class PayeerController extends Controller
                 Log::info('Обращение к маршруту /handler + success');
                 Order::updateOrCreate([
                     'id' => $_POST['m_orderid'],
+                ], [
                     'payeer_operation_id' => $_POST['m_operation_id'],
                     'operation_ps' => $_POST['m_operation_ps'],
                     'operation_date' => $_POST['m_operation_date'],
