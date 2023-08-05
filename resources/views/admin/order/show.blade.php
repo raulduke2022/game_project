@@ -64,6 +64,13 @@
                            value="{{ $order->status === "success" ? "Оплачен" : "В процессе" }}">
                 </div>
             </div>
+            <div class="col-auto">
+                <div class="form-group">
+                    <label for="price">Статус заказа</label>
+                    <input type="text" class="form-control m-2"
+                           value="{{ $order->is_done ? "Обработан" : "Не обработан" }}">
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-auto">

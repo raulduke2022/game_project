@@ -21,7 +21,7 @@ class Order extends Model
 
     public function isDone()
     {
-        return $this->getAttribute('status') === 'success';
+        return $this->getAttribute('is_done');
     }
 
     protected $dates = ['operation_date', 'operation_pay_date'];

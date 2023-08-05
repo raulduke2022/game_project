@@ -32,7 +32,8 @@
                     <th scope="col">#</th>
                     <th scope="col" class="col-md-2">Номер заявки</th>
                     <th scope="col">Игра</th>
-                    <th scope="col" class="col-md-4">Статус</th>
+                    <th scope="col" class="col-md-2">Статус оплаты</th>
+                    <th scope="col" class="col-md-2">Статус заказа</th>
                     <th scope="col" class="col-md-2">Действия</th>
                 </tr>
                 </thead>
@@ -44,15 +45,16 @@
                         <td class="table-td"><a href="{{ route('games.show', $order->game && $order->game->id) }}"
                                                 style="text-decoration: none; color:green">{{ $order->game ? $order->game->title : "" }}</a>
                         </td>
+                        <td>{{ $order->status === "success" ? "Оплачен" : "В процессе" }}</td>
                         <td @if($order->id == session('id')) class="table-td bg-info"
-                            @else class="table-td" @endif>{{ $order->status === "success" ? "Оплачен" : "В процессе" }}</td>
+                            @else class="table-td" @endif>{{ $order->is_done  ? "Обработан" : "Новый" }}</td>
                         <td>
                             <a href="{{ route('orders.show', $order->id) }}" class="btn btn-success">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
-                            {{--                            <a href="{{ route('games.edit', $order->id) }}" class="btn btn-primary">--}}
-                            {{--                                <i class="fa fa-edit"></i>--}}
-                            {{--                            </a>--}}
+{{--                                                        <a href="{{ route('games.edit', $order->id) }}" class="btn btn-primary">--}}
+{{--                                                            <i class="fa fa-edit"></i>--}}
+{{--                                                        </a>--}}
                             <form action="{{ route('orders.toggle', $order->id) }}" method="POST"
                                   style="display: inline-block">
                                 @csrf
