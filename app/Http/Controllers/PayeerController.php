@@ -19,17 +19,22 @@ class PayeerController extends Controller
         $this->config = Config::first();
     }
 
-    public function payment(Game $game)
+    public function payment(Request $request, Game $game, Order $order)
     {
-        $instance = new StoreController();
-        $newOrder = $instance($game->id);//создаем заказ
+        $userAgent = $request->header('User-Agent');
+        $ipAddress = $request->ip();
+
+        $order->update([
+            'user_ip' => $userAgent,
+            'user_agent' => $ipAddress
+        ]);
 
         $domain = request()->getHost();
         $this->game = $game;
 
         $m_shop = $this->config->shop;
         $m_key = $this->config->key;
-        $m_orderid = $newOrder->id;
+        $m_orderid = $order->id;
         $m_amount = number_format(1, 2, '.', ''); //продумать
         $m_curr = $this->config->curr;
         $m_desc = base64_encode('Test'); //добавить описание  Переменная m_desc должна обязательно содержать кодированный с помощью base64_encode текст
@@ -123,7 +128,7 @@ class PayeerController extends Controller
                     'curr' => $_POST['m_curr'],
                     'desc' => $_POST['m_desc'],
                     'status' => $_POST['m_status'],
-                    'game_id' => $referenceId
+                    'game_id' => $referenceId,
                 ]);
                 if (ob_get_contents()) ob_end_clean();
                 exit($_POST['m_orderid'] . '|success');

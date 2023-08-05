@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\{
     Route
 };
 
-Route::get('/payment/{game}', [PayeerController::class, 'payment']);
+Route::get('/payment/{game}/{order}', [PayeerController::class, 'payment']);
 Route::post('/handler', [PayeerController::class, 'handle']);
 Route::get('/success', [PayeerController::class, 'success']);
 Route::get('/fail', [PayeerController::class, 'fail']);

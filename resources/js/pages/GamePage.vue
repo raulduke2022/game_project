@@ -5,7 +5,8 @@
                 <game-card :title="game.title" :price="game.price" :description="game.description"></game-card>
             </div>
             <div class="buy-form">
-                <base-form><game-button class="button" @click="makePayment">Купить</game-button></base-form>
+                <base-form @makePayment="makePayment">
+                </base-form>
             </div>
         </div>
         <div v-if="slides" class="slider">
@@ -42,6 +43,11 @@ export default {
             }
         }
     },
+    data() {
+        return {
+            email: ''
+        }
+    },
     methods: {
         async loadGameInfo() {
             this.$store.dispatch('toggleLoading')
@@ -52,8 +58,26 @@ export default {
             }
             this.$store.dispatch('toggleLoading')
         },
-        makePayment() {
-            window.location.href = `/payment/${this.id}`
+        async makePayment(email) {
+            const response = await fetch('/api/orders',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "user_email": email,
+                        "game_id": this.id,
+                    })
+                });
+
+            if (!response.ok) {
+                throw new Error(responseData.message || 'Failed to fetch games.');
+            }
+            const responseData = await response.json();
+            console.log(responseData);
+            window.location.href = `/payment/${this.id}/${responseData.id}`
         }
     },
     created() {

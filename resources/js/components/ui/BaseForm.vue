@@ -3,19 +3,50 @@
         <form class="form">
             <div class="pageTitle title">{{ title }}</div>
             <div class="secondaryTitle title">Заполните данные, пожалуйста.</div>
-            <input type="text" class="name formEntry" placeholder="Имя" />
-            <input type="text" class="name formEntry" placeholder="Фамилия" />
-            <input type="text" class="name formEntry" placeholder="Электронная почта"/>
-            <input type="checkbox" class="termsConditions" value="Term">
-            <label style="color: grey" for="terms"> I Accept the <span style="color: #0e3721">Terms of Use</span> & <span style="color: #0e3721">Privacy Policy</span>.</label><br>
-            <slot></slot>
+            <!--            <input type="text" class="name formEntry" placeholder="Имя"/>-->
+            <!--            <input type="text" class="name formEntry" placeholder="Фамилия"/>-->
+            <input type="email" class="name formEntry" placeholder="Электронная почта"
+                   :class="{ 'error': errors.email }" v-model="email"/>
+            <div v-if="errors.email" class="errorText title">{{ errors.email }}</div>
+            <label style="color: grey;" class="title" for="terms"> <input type="checkbox" class="" value="Term"
+                                                                          v-model="termsAgreed"> Я принимаю условия
+                пользовательского соглашения </label> <br>
+            <span v-if="errors.termsAgreed" class="errorText title">{{ errors.termsAgreed }}</span>
+            <game-button class="button" @click="makePayment">Купить</game-button>
         </form>
     </div>
 </template>
 
 <script>
 import GameButton from "@/components/ui/GameButton.vue";
+
 export default {
+    emits: ['makePayment'],
+    data() {
+        return {
+            email: 'raul@gmail.com',
+            termsAgreed: true,
+            errors: {},
+        }
+    },
+    methods: {
+        makePayment() {
+            this.errors = {};
+            if (!this.email) {
+                this.errors.email = 'Email не заполнена';
+            } else if (!/^[^@]+@\w+(\.\w+)+\w$/.test(this.email)) {
+                this.errors.email = 'Email неверно заполнена';
+            }
+
+            if (!this.termsAgreed) {
+                this.errors.termsAgreed = 'Необходимо принять условия';
+            }
+
+            if (!this.errors.length) {
+                this.$emit('makePayment', this.email)
+            }
+        }
+    },
     props: ['title'],
     components: {
         GameButton
@@ -30,6 +61,7 @@ body {
 #title-Tag-Line {
     font-size: 20px;
 }
+
 /* .card-item__bg{
   width: 150px;
   margin-left: auto;
@@ -59,25 +91,29 @@ body {
     border: 5px solid yellow;
     /*   z-index: 1; */
 }
+
 ::-webkit-input-placeholder {
     font-size: 1.3em;
 }
 
-.title{
+.title {
     display: block;
     font-family: sans-serif;
     margin: 10px auto 5px;
+    padding-bottom: 10px;
     width: 300px;
 }
-.termsConditions{
+
+.termsConditions {
     margin: 0 auto 5px 80px;
 }
 
-.pageTitle{
+.pageTitle {
     font-size: 2em;
     font-weight: bold;
 }
-.secondaryTitle{
+
+.secondaryTitle {
     color: grey;
 }
 
@@ -140,6 +176,14 @@ body {
     border: none;
     transition: all 0.5s ease 0s;
     font-size: 20px;
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.errorText {
+    color: red;
 }
 
 
