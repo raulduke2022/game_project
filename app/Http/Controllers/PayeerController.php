@@ -23,7 +23,6 @@ class PayeerController extends Controller
     {
         $instance = new StoreController();
         $newOrder = $instance($game->id);//создаем заказ
-        $game->setReserved(); //резервируем
 
         $domain = request()->getHost();
         $this->game = $game;
