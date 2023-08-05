@@ -111,17 +111,21 @@ class PayeerController extends Controller
             if ($_POST['m_sign'] == $sign_hash && $_POST['m_status'] == 'success') {
                 if (ob_get_contents()) ob_end_clean();
 
+                $mParams = json_decode($_POST['m_params'], true);
+                $referenceId = $mParams['reference']['id'];
+
                 Log::info('Обращение к маршруту /handler + success');
                 Order::updateOrCreate([
-                   'id' => $_POST['m_orderid'],
-                   'payeer_operation_id' => $_POST['m_operation_id'],
-                   'operation_ps' => $_POST['m_operation_ps'],
-                   'operation_date' => $_POST['m_operation_date'],
-                   'operation_pay_date' => $_POST['m_operation_pay_date'],
-                   'amount' => $_POST['m_amount'],
-                   'curr' => $_POST['m_curr'],
-                   'desc' => $_POST['m_desc'],
-                   'status' => $_POST['m_status'],
+                    'id' => $_POST['m_orderid'],
+                    'payeer_operation_id' => $_POST['m_operation_id'],
+                    'operation_ps' => $_POST['m_operation_ps'],
+                    'operation_date' => $_POST['m_operation_date'],
+                    'operation_pay_date' => $_POST['m_operation_pay_date'],
+                    'amount' => $_POST['m_amount'],
+                    'curr' => $_POST['m_curr'],
+                    'desc' => $_POST['m_desc'],
+                    'status' => $_POST['m_status'],
+                    'game_id' => $referenceId
                 ]);
                 Log::info('Параметры POST: ' . var_export($_POST, true));
 
