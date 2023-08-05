@@ -13,7 +13,7 @@ class GamesController extends Controller
 {
     public function index() :JsonResponse
     {
-        $games = DB::table('games')->where('reserved', false)->paginate(9);
+        $games = Game::paginate(9);
         return response()->json($games);
     }
 
@@ -22,5 +22,4 @@ class GamesController extends Controller
         $game->load('images');
         return response()->json($game);
     }
-
 }

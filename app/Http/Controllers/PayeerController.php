@@ -113,6 +113,18 @@ class PayeerController extends Controller
                 if (ob_get_contents()) ob_end_clean();
 
                 Log::info('Обращение к маршруту /handler + success');
+                Order::updateOrCreate([
+                   'id' => $_POST['m_orderid'],
+                   'payeer_operation_id' => $_POST['m_operation_id'],
+                   'operation_ps' => $_POST['m_operation_ps'],
+                   'operation_date' => $_POST['m_operation_date'],
+                   'operation_pay_date' => $_POST['m_operation_pay_date'],
+                   'payeer_opeamountration_id' => $_POST['m_shop'],
+                   'amount' => $_POST['m_amount'],
+                   'curr' => $_POST['curr'],
+                   'desc' => $_POST['m_desc'],
+                   'status' => $_POST['m_status'],
+                ]);
                 Log::info('Параметры POST: ' . var_export($_POST, true));
 
                 exit($_POST['m_orderid'] . '|success');
@@ -129,7 +141,7 @@ class PayeerController extends Controller
 
     public function success()
     {
-        return redirect()->route('market');
+        return view('payeer/success');
     }
 
     public function fail()

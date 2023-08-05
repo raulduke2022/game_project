@@ -4,7 +4,7 @@
             <div class="wrapper">
                 <div class="header">
                     <div class="date">
-                        <h1>{{  price }} $</h1>
+                        <h1>{{  price }} </h1>
                     </div>
                 </div>
                 <div class="data">
