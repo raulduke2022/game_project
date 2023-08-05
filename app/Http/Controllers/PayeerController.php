@@ -81,7 +81,6 @@ class PayeerController extends Controller
 
     public function handle()
     {
-        Log::info('Обращение к маршруту /handler');
         if (!in_array($_SERVER['REMOTE_ADDR'], array('185.71.65.92', '185.71.65.189', '149.202.17.210'))) return;
 
         if (isset($_POST['m_operation_id']) && isset($_POST['m_sign'])) {
@@ -109,12 +108,10 @@ class PayeerController extends Controller
             $sign_hash = strtoupper(hash('sha256', implode(':', $arHash)));
 
             if ($_POST['m_sign'] == $sign_hash && $_POST['m_status'] == 'success') {
-                if (ob_get_contents()) ob_end_clean();
 
                 $mParams = json_decode($_POST['m_params'], true);
                 $referenceId = $mParams['reference']['id'];
 
-                Log::info('Обращение к маршруту /handler + success');
                 Order::updateOrCreate([
                     'id' => $_POST['m_orderid'],
                 ], [
@@ -126,18 +123,13 @@ class PayeerController extends Controller
                     'curr' => $_POST['m_curr'],
                     'desc' => $_POST['m_desc'],
                     'status' => $_POST['m_status'],
+                    'game_id' => $referenceId
                 ]);
-                Log::info('Параметры POST: ' . var_export($_POST, true));
-
+                if (ob_get_contents()) ob_end_clean();
                 exit($_POST['m_orderid'] . '|success');
             }
-
             if (ob_get_contents()) ob_end_clean();
-            Log::info('Обращение к маршруту /handler + error');
-            Log::info('Параметры POST: ' . var_export($_POST, true));
-
             exit($_POST['m_orderid'] . '|error');
-
         }
     }
 
