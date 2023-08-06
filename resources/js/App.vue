@@ -7,7 +7,7 @@
         </main>
         <footer class="footer-container">
             <router-link :to="{name: 'Game'}" class="footer-link">О нас</router-link>
-            <router-link :to="{name: 'Game'}" class="footer-link">Правила сайта</router-link>
+            <router-link :to="{name: 'Game'}" class="footer-link">Правила</router-link>
         </footer>
     </div>
 </template>
@@ -32,8 +32,22 @@ export default {
                 });
             })
         },
+        async getCurr() {
+            const response = await fetch('/api/curr');
+            const responseData = await response.json();
+
+            if (!response.ok) {
+                throw new Error(responseData.message || 'Failed to fetch curr data.');
+            }
+            console.log(responseData);
+            this.$store.dispatch('updateCurr', responseData || 'RUB')
+        },
+    },
+    created() {
+        this.getCurr()
     }
 }
+
 </script>
 
 <style>
@@ -66,8 +80,7 @@ body {
 
 
 main {
-    //background: linear-gradient(to right, #434343 0%, black 100%);
-    background-color: black;
+//background: linear-gradient(to right, #434343 0%, black 100%); background-color: black;
 }
 
 
@@ -75,9 +88,9 @@ footer {
     border-top: green 2px solid;
     grid-area: footer;
     color: #fff;
-    padding: 20px;
+    padding: 0.9rem;
     text-align: center;
-    background-color: #ffa300;
+    background-color: orange;
 }
 
 .footer-container {
@@ -89,7 +102,7 @@ footer {
 .footer-link {
     padding-right: 20px;
     text-decoration: none;
-    color: white
+    color: black
 }
 
 a {
@@ -104,7 +117,7 @@ a {
 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-    width: 15px;
+    width: 10px;
 }
 
 *::-webkit-scrollbar-track {
@@ -113,9 +126,7 @@ a {
 
 *::-webkit-scrollbar-thumb {
     background-color: #5186ff;
-    border-radius: 20px;
     border: 3px solid black;
 }
-
 
 </style>

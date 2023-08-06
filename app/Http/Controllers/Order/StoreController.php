@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use Illuminate\Support\Facades\DB;
 
 class StoreController extends Controller
 {

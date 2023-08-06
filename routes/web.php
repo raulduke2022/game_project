@@ -1,19 +1,13 @@
 <?php
 
-use App\Http\Controllers\{
-    ConfigController,
+use App\Http\Controllers\{ConfigController,
     GameController,
     ImageController,
     Order\EditController,
     Order\IndexController,
     Order\ShowController,
-    PayeerController
-};
-
-use Illuminate\Support\Facades\{
-    Auth,
-    Route
-};
+    PayeerController};
+use Illuminate\Support\Facades\{Auth, Route};
 
 Route::get('/payment/{game}/{order}', [PayeerController::class, 'payment']);
 Route::post('/handler', [PayeerController::class, 'handle']);

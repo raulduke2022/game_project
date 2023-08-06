@@ -16,7 +16,7 @@
                 </vueper-slides>
             </div>
             <div class="buy-form">
-                <base-form @makePayment="makePayment" :price="game.price">
+                <base-form @makePayment="makePayment" :price="game.price" :curr="curr">
                 </base-form>
             </div>
         </div>
@@ -34,13 +34,16 @@ export default {
     components: {GameButton, VueperSlides, VueperSlide, BaseForm, BaseHeader},
     props: ['id'],
     computed: {
+        curr() {
+            return this.$store.getters.curr;
+        },
         game() {
             return this.$store.getters['games/game'];
         },
         slides() {
             const game = this.$store.getters['games/game'];
             if (game && game.images.length) {
-                return game.images
+                return game.images.filter((image) => image['is_main'] !== 1)
             }
         }
     },
@@ -90,7 +93,6 @@ export default {
 .container {
     margin-top: 1rem;
     margin-bottom: 1rem;
-    overflow-y: auto;
 }
 
 .buy-form {

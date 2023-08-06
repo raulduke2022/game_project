@@ -5,7 +5,6 @@ namespace App\Services\GameImage;
 use App\Http\Requests\GameRequest;
 use App\Models\Game;
 use App\Models\Image;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 

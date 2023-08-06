@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CurrController;
 use App\Http\Controllers\Api\GamesController;
 use App\Http\Controllers\Api\OrdersController;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+Route::get('curr', [CurrController::class, 'getCurr']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

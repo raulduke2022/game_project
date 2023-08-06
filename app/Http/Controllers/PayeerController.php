@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Order\StoreController;
 use App\Models\Config;
 use App\Models\Game;
 use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class PayeerController extends Controller
 {
@@ -21,6 +19,9 @@ class PayeerController extends Controller
 
     public function payment(Request $request, Game $game, Order $order)
     {
+        if (!$this->config) {
+            abort(500);
+        }
         $userAgent = $request->header('User-Agent');
         $ipAddress = $request->ip();
 

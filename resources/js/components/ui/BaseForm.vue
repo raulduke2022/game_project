@@ -12,7 +12,8 @@
                                                                           v-model="termsAgreed"> Я принимаю условия
                 пользовательского соглашения </label> <br>
             <span v-if="errors.termsAgreed" class="errorText title">{{ errors.termsAgreed }}</span>
-            <div class="title" style="display: flex; justify-content: center; font-size: 1.5rem; box-shadow: 2px 2px 2px 2px green">{{ price }} RUB </div>
+            <div class="title" style="display: flex; justify-content: center; font-size: 1.5rem; box-shadow: 2px 2px 2px 2px green">{{ price }}
+                {{ curr }} </div>
             <game-button class="button" @click="makePayment">Купить</game-button>
         </form>
     </div>
@@ -48,7 +49,7 @@ export default {
             }
         }
     },
-    props: ['title', 'price'],
+    props: ['title', 'price', 'curr'],
     components: {
         GameButton
     }

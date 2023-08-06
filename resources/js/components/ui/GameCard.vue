@@ -4,7 +4,7 @@
             <div class="wrapper">
                 <div class="header">
                     <div class="date">
-                        <h1>{{ price }} RUB </h1>
+                        <h1>{{ price }} {{ curr }} </h1>
                     </div>
                 </div>
                 <div class="image" :style="imagePath ? `background: url(${imagePath}) center / cover no-repeat;` : 'background:transparent' " ></div>
@@ -25,6 +25,9 @@ import '../../../scss/gamecard/card.scss'
 
 export default {
     computed: {
+        curr() {
+            return this.$store.getters.curr;
+        },
         imagePath()
         {
             if (this.image.length) {

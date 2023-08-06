@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
-use Illuminate\Support\Facades\Request;
 
 class ImageController extends BaseController
 {

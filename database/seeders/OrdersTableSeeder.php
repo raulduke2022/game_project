@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Order;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Game;
 
 class OrdersTableSeeder extends Seeder
 {

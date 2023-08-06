@@ -10,6 +10,7 @@ const store = createStore({
         return {
             isLoading: false,
             scrollHeight: null,
+            curr: ''
         };
     },
     getters: {
@@ -18,6 +19,9 @@ const store = createStore({
         },
         scrollHeight(state) {
             return state.scrollHeight
+        },
+        curr(state) {
+            return state.curr;
         }
     },
     mutations: {
@@ -26,6 +30,9 @@ const store = createStore({
         },
         setScrollHeight(state, payload) {
             state.scrollHeight = payload
+        },
+        setCurr(state,payload) {
+            state.curr = payload
         }
     },
     actions: {
@@ -34,6 +41,9 @@ const store = createStore({
         },
         updateScrollHeight(context, payload) {
             context.commit('setScrollHeight', payload)
+        },
+        updateCurr(context, payload) {
+            context.commit('setCurr', payload)
         }
     }
 });

@@ -34,6 +34,7 @@ export default {
     color: #ffa300;
     justify-content: center;
     overflow-y: auto;
+    padding-right: 1rem;
 }
 
 </style>
