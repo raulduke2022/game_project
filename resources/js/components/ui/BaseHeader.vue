@@ -27,9 +27,11 @@ export default {
 
 .title {
     font-size: 2rem;
+    color: tomato;
 }
 
 .about {
+    color: #ffa300;
     justify-content: center;
     overflow-y: auto;
 }

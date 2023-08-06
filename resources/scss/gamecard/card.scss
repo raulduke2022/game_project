@@ -47,7 +47,7 @@ h1 {
 // Base styles
 .card {
     float: left;
-    padding: 0 1.7rem;
+    //padding: 0 rem;
     min-width: 25rem;
     .menu-content {
         @include cf;
@@ -103,7 +103,7 @@ h1 {
     }
     .text {
         height: 6rem;
-        margin: 0 0 1.5rem 0;
+        //margin: 0 0 1rem 0;
     }
     input[type='checkbox'] {
         display: none;
