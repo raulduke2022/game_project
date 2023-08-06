@@ -21,22 +21,23 @@ class Service
 
     public function createOrUpdate(GameRequest $request, Game $game = null)
     {
+        $data = $request->all();
         try {
-            DB::transaction(function () use ($request, $game) {
+            DB::transaction(function () use ($request, $game, $data) {
                 if ($game) {
-                    $game->update($request->only([
-                        'key',
-                        'title',
-                        'description',
-                        'price',
-                    ]));
+                    $game->update([
+                        'introduction' => $data['introduction'],
+                        'title' => $data['title'],
+                        'description' => $data['description'],
+                        'price' => (int) $data['price'] * env('CURR_CENTS', 100),
+                    ]);
                 } else {
-                    $game = Game::create($request->only([
-                        'key',
-                        'title',
-                        'description',
-                        'price',
-                    ]));
+                    $game = Game::create([
+                        'introduction' => $data['introduction'],
+                        'title' => $data['title'],
+                        'description' => $data['description'],
+                        'price' => (int) $data['price'] * env('CURR_CENTS', 100),
+                    ]);
                 }
 
                 $files = $request->file('attachment');
@@ -55,10 +56,10 @@ class Service
 
 //            Artisan::call('storage:link');
             session()->flash('success', 'Запись успешно ' . ($game ? 'обновлена' : 'создана'));
-            return redirect($game ? route('games.show', $game->id) : route('games.index'));
+            return redirect($game ? route('games.edit', $game->id) : route('games.index'));
         } catch (\Exception $e) {
             session()->flash('error', 'Ошибка при ' . ($game ? 'обновлении' : 'создании') . ' записи: ' . $e->getMessage());
-            return redirect()->withErrors(['error' => $e->getMessage()])->withInput();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
         }
     }
 }

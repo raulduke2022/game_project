@@ -1,6 +1,7 @@
 <template>
     <base-spinner v-if="isLoading" class="spinner"></base-spinner>
     <div class="container" v-show="!isLoading">
+        <nav-bar></nav-bar>
         <main>
             <router-view @scrollMe="scrollToBottom"></router-view>
         </main>
@@ -12,7 +13,10 @@
 </template>
 
 <script>
+import Navbar from "@/components/ui/Navbar.vue";
+
 export default {
+    components: {Navbar},
     computed: {
         isLoading() {
             return this.$store.getters.isLoading;
@@ -51,17 +55,19 @@ export default {
     height: 100vh
 }
 
-
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     padding: 0;
     box-sizing: border-box;
+    line-height: 1.5;
 }
 
 
 main {
+    //background: linear-gradient(to right, #434343 0%, black 100%);
+    background-color: black;
 }
 
 
@@ -88,6 +94,27 @@ footer {
 
 a {
     text-decoration: none;
+}
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: blue orange;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+    background: black;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #5186ff;
+    border-radius: 20px;
+    border: 3px solid black;
 }
 
 

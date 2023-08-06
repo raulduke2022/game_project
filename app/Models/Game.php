@@ -34,7 +34,8 @@ class Game extends Model
     {
         return Attribute::make(
             get: function (int $value) {
-                $price = $value / env('CURR_CENTS', 100) . ' ' . env('CURR', 'RUB');
+                $price = $value / env('CURR_CENTS', 100);
+//                $price = $value / env('CURR_CENTS', 100) . ' ' . env('CURR', 'RUB');
                 return $price;
             }
         );

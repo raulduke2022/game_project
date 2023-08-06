@@ -14,4 +14,16 @@ class Image extends Model
     public function game() {
         return $this->belongsTo(Game::class);
     }
+
+    public function setMain() {
+        $this->update([
+           'is_main' => true
+        ]);
+    }
+
+    public function unset() {
+        $this->update([
+            'is_main' => false
+        ]);
+    }
 }

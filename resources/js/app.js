@@ -12,6 +12,7 @@ import GameButton from './components/ui/GameButton.vue';
 import BaseBadge from './components/ui/BaseBadge.vue';
 import BaseSpinner from './components/ui/BaseSpinner.vue';
 import BaseDialog from './components/ui/BaseDialog.vue';
+import Navbar from "@/components/ui/Navbar.vue";
 
 const app = createApp({});
 
@@ -21,6 +22,7 @@ app.component('game-button', GameButton);
 app.component('base-badge', BaseBadge);
 app.component('base-spinner', BaseSpinner);
 app.component('base-dialog', BaseDialog);
+app.component('nav-bar', Navbar);
 
 app.use(router)
 app.use(store)

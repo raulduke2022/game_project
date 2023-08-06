@@ -1,7 +1,11 @@
 <template>
     <section>
         <router-link :to="{ name: 'GamePage', params: {id: id}}">
-            <game-card :title="title" :price="price" :description="description"><a href="#" class="button">Посмотреть</a>
+            <game-card
+                :image="images ? images.filter(image => image.is_main) : null"
+                :title="title"
+                :price="price"
+                :introduction="introduction">
             </game-card>
         </router-link>
     </section>
@@ -12,7 +16,7 @@ import GameCard from "@/components/ui/GameCard.vue";
 
 export default {
     components: {GameCard},
-    props: ['id', 'title', 'price', 'description'],
+    props: ['id', 'title', 'price', 'introduction', 'images'],
 }
 
 </script>

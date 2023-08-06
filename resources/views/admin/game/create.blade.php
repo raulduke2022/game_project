@@ -35,8 +35,8 @@
                                value="{{ old('price') }}">
                     </div>
                     <div class="form-group  w-25 col-auto">
-                        <label for="key">Ключ</label>
-                        <textarea rows="2" class="form-control m-2" name="key" id="key">{{ old('key') }}</textarea>
+                        <label for="introduction">Мини описание</label>
+                        <textarea rows="2" class="form-control m-2" name="introduction" id="introduction">{{ old('introduction') }}</textarea>
                     </div>
                 </div>
                 <div class="form-group  w-25">

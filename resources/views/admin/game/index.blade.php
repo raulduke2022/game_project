@@ -34,7 +34,7 @@
                         <td class="table-td">{{ $game->title }}</td>
                         <td class="table-td">{{ $game->description }}</td>
                         <td class="table-td">{{ $game->price }}</td>
-                        <td class="table-td" style="color: green">{{ $game->order && $game->order->is_done ? 'Продан' : '' }}</td>
+                        <td class="table-td" style="color: green">{{ $game->order && $game->order->is_done ? 'Продан' : 'Новый' }}</td>
                         <td>
                             <a href="{{ route('games.show', $game->id) }}" class="btn btn-success">
                                 <i class="fa-solid fa-eye"></i>

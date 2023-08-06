@@ -12,6 +12,7 @@
                                                                           v-model="termsAgreed"> Я принимаю условия
                 пользовательского соглашения </label> <br>
             <span v-if="errors.termsAgreed" class="errorText title">{{ errors.termsAgreed }}</span>
+            <div class="title" style="display: flex; justify-content: center; font-size: 1.5rem; box-shadow: 2px 2px 2px 2px green">{{ price }} RUB </div>
             <game-button class="button" @click="makePayment">Купить</game-button>
         </form>
     </div>
@@ -42,12 +43,12 @@ export default {
                 this.errors.termsAgreed = 'Необходимо принять условия';
             }
 
-            if (!this.errors.length) {
+            if (!this.errors.email && !this.errors.termsAgreed) {
                 this.$emit('makePayment', this.email)
             }
         }
     },
-    props: ['title'],
+    props: ['title', 'price'],
     components: {
         GameButton
     }
@@ -78,8 +79,7 @@ body {
 /* form animation starts */
 .form {
     background: #fff;
-    box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
-    border-radius: 5px;
+    box-shadow: 0px 15px 60px 0px rgb(37 87 149 / 40%);
     max-width: 680px;
     min-width: 480px;
     margin-left: auto;
@@ -88,7 +88,6 @@ body {
     padding-bottom: 5px;
     left: 0;
     right: 0;
-    border: 5px solid yellow;
     /*   z-index: 1; */
 }
 
@@ -100,7 +99,8 @@ body {
     display: block;
     font-family: sans-serif;
     margin: 10px auto 5px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
     width: 300px;
 }
 

@@ -24,7 +24,6 @@ sans-serif;
 }
 
 body {
-    background-image: linear-gradient(to right, $regal-blue, $san-juan);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100vh;
@@ -49,7 +48,7 @@ h1 {
 .card {
     float: left;
     padding: 0 1.7rem;
-    min-width: 30rem;
+    min-width: 25rem;
     .menu-content {
         @include cf;
         margin: 0;
@@ -72,7 +71,7 @@ h1 {
         }
     }
     .wrapper {
-        background-color: $white;
+        background-color: #0e3721;
         min-height: 540px;
         position: relative;
         overflow: hidden;
@@ -100,10 +99,11 @@ h1 {
     }
     .title {
         margin-top: 10px;
+        margin-bottom: 1rem;
     }
     .text {
-        height: 70px;
-        margin: 0;
+        height: 6rem;
+        margin: 0 0 1.5rem 0;
     }
     input[type='checkbox'] {
         display: none;
@@ -115,7 +115,6 @@ h1 {
 
 .example-2 {
     .wrapper {
-        background: url(https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg) center / cover no-repeat;
         &:hover {
             .menu-content {
                 span {
@@ -131,7 +130,7 @@ h1 {
         padding: 1em;
         .date {
             float: left;
-            font-size: 12px;
+            font-size: 20px;
         }
     }
     .menu-content {

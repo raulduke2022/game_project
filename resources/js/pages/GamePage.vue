@@ -1,23 +1,24 @@
 <template>
     <div class="container">
-        <div class="game-main">
-            <div class="game-card" v-if="game">
-                <game-card :title="game.title" :price="game.price" :description="game.description"></game-card>
+        <div class="header">
+            <base-header :title="game.title" :description="game.description"></base-header>
+        </div>
+        <div class="main">
+            <div v-if="slides" class="slider">
+                <vueper-slides lazy lazy-load-on-drag fixed-height="25rem">
+                    <vueper-slide fixed-height="50rem" class="slide" v-for="(slide, i) in slides" :key="i"
+                                  :image="`/${slide.path}`">
+                        <template #loader>
+                            <i class="icon icon-loader spinning"></i>
+                            <span>Идет загрузка...</span>
+                        </template>
+                    </vueper-slide>
+                </vueper-slides>
             </div>
             <div class="buy-form">
-                <base-form @makePayment="makePayment">
+                <base-form @makePayment="makePayment" :price="game.price">
                 </base-form>
             </div>
-        </div>
-        <div v-if="slides" class="slider">
-            <vueper-slides lazy lazy-load-on-drag>
-                <vueper-slide v-for="(slide, i) in slides" :key="i" :image="`/${slide.path}`">
-                    <template #loader>
-                        <i class="icon icon-loader spinning"></i>
-                        <span>Идет загрузка...</span>
-                    </template>
-                </vueper-slide>
-            </vueper-slides>
         </div>
     </div>
 </template>
@@ -27,10 +28,10 @@ import {VueperSlide, VueperSlides} from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
 import GameButton from "@/components/ui/GameButton.vue";
 import BaseForm from "@/components/ui/BaseForm.vue";
-import GameCard from "@/components/ui/GameCard.vue";
+import BaseHeader from "@/components/ui/BaseHeader.vue";
 
 export default {
-    components: {GameCard, GameButton, VueperSlides, VueperSlide, BaseForm},
+    components: {GameButton, VueperSlides, VueperSlide, BaseForm, BaseHeader},
     props: ['id'],
     computed: {
         game() {
@@ -76,7 +77,6 @@ export default {
                 throw new Error(responseData.message || 'Failed to fetch games.');
             }
             const responseData = await response.json();
-            console.log(responseData);
             window.location.href = `/payment/${this.id}/${responseData.id}`
         }
     },
@@ -88,37 +88,39 @@ export default {
 <style scoped>
 
 .container {
-    overflow: auto;
-    background: linear-gradient(to right, #034378, #2d4e68);
-    display: grid;
-    grid-template-areas: "main" "slider";
-    grid-template-rows: 1fr auto;
-    justify-content: center;
-}
-
-.slider {
-    grid-area: slider;
-    margin: 2rem 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    overflow-y: auto;
 }
 
 .buy-form {
-    margin-top: 4rem;
-    display: block;
+
 }
 
-.game-card {
-    display: block;
-}
-
-.game-main {
-    grid-area: main;
-    grid-template-columns: 1fr 1.5fr;
+.main {
+    //margin-top: 2rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .vueperslide--loading .vueperslide__content-wrapper {
     display: none !important;
+}
+
+.header {
+    border-bottom: 2px solid yellow;
+    border-top: 2px solid yellow;
+    margin: 2rem 2rem 0.5rem 2rem;
+}
+
+.slider {
+    width: 48rem;
+    margin: 0 0 0.5rem 0rem;
+}
+
+.slide {
+    background: no-repeat;
+    background-size: cover;
 }
 
 </style>

@@ -22,5 +22,8 @@ export default {
         }
 
         context.commit('setGame', responseData);
+    },
+    setGamesNull(context) {
+        context.commit('addGames', [])
     }
 }

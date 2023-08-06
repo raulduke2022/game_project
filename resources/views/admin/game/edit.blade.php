@@ -35,13 +35,13 @@
                             </div>
                             <div class="form-group col-auto w-25">
                                 <label for="price">Цена</label>
-                                <input type="number" class="form-control m-2" name="price" id="price"
+                                <input type="text" class="form-control m-2" name="price" id="price"
                                        value="{{ old('price', $game->price) }}">
                             </div>
                             <div class="form-group col-auto w-25">
-                                <label for="key">Ключ</label>
-                                <textarea rows="2" class="form-control m-2" name="key"
-                                          id="key">{{ old('key', $game->key) }}</textarea>
+                                <label for="introduction">Мини описание</label>
+                                <textarea rows="2" class="form-control m-2" name="introduction"
+                                          id="introduction">{{ old('introduction', $game->introduction) }}</textarea>
                             </div>
                         </div>
                         <div class="form-group w-50">
@@ -69,15 +69,18 @@
                         <div class="mb-2">Изображения</div>
                         <div class="row h-25 overflow-auto image-row m-2">
                             @foreach($images as  $index => $image)
-                                <div class="col-md-4 p-3">
-                                    <a href="{{ asset($image->path) }}">Посмотреть</a>
+                                <div class="m-1 col p-3 border {{ $image->is_main ? 'border-warning' : '' }}">
+                                    <a href="{{ asset($image->path) }}" style="text-decoration: none; border: 0">Посмотреть</a>
                                     <form action="{{ route('images.destroy', $image->id) }}" method="POST"
                                           style="display: inline-block">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
+                                        <button type="submit" class="btn btn-danger m-1">
                                             <i class="fa fa-trash"></i>
                                         </button>
+                                        @if (!$image->is_main)<button type="submit" class="btn btn-info m-1" name="set_main">Назначить фоном
+                                        </button>
+                                        @endif
                                     </form>
                                 </div>
                             @endforeach

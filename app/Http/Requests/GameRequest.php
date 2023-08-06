@@ -22,7 +22,7 @@ class GameRequest extends FormRequest
     public function rules()
     {
         return [
-            'key' => '',
+            'introduction' => '',
             'title' => 'required',
             'description' => 'string',
             'price' => 'numeric',
