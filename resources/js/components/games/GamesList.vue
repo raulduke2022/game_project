@@ -1,11 +1,9 @@
 <template>
     <section class="headline">
-        <h1 style="font-size: 2rem">Магазин цифровых товаров</h1>
+        <h2 style="font-size: 3rem; color: #ff4630;">Магазин цифровых товаров</h2>
         <h2 style="color: yellow; font-size: 2rem">Выгодные предложения!</h2>
     </section>
     <div>
-        <!--        <header v-if="!isLoading">-->
-        <!--        </header>-->
         <ul class="main-container" id="main-container">
             <li v-for="game in games" :key="game.id">
                 <game-detail :images="game.images" :title="game.title" :price="game.price"
@@ -83,19 +81,6 @@ export default {
 
 <style scoped>
 
-header {
-    background-image: url("../../back.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    grid-area: header;
-    color: #fff;
-    text-align: center;
-    height: 30rem;
-    border-bottom: green 2px solid;
-}
-
-
 .main-container {
     display: grid;
     margin: 0 1rem;
@@ -121,8 +106,13 @@ ul {
     width: 100%;
     height: 50vh;
     min-height: 350px;
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1435224668334-0f82ec57b605?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80');
-    background-size: cover;
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #1f4037;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #99f2c8, #1f4037);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #99f2c8, #1f4037); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -130,7 +120,6 @@ ul {
 }
 
 h1, p, h2 {
-    color: #fff;
     text-align: center;
     line-height: 1.4;
 }

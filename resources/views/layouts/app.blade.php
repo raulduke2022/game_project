@@ -14,7 +14,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/js/auth.js'])
+    @vite(['resources/js/js-helpers/auth.js'])
 </head>
 <body>
     <div id="auth">
