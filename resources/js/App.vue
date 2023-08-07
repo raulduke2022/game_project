@@ -39,7 +39,6 @@ export default {
             if (!response.ok) {
                 throw new Error(responseData.message || 'Failed to fetch curr data.');
             }
-            console.log(responseData);
             this.$store.dispatch('updateCurr', responseData || 'RUB')
         },
     },
