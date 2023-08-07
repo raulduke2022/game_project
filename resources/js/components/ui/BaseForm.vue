@@ -26,8 +26,8 @@ export default {
     emits: ['makePayment'],
     data() {
         return {
-            email: 'raul@gmail.com',
-            termsAgreed: true,
+            email: '',
+            termsAgreed: false,
             errors: {},
         }
     },
