@@ -1,6 +1,6 @@
 <template>
     <section class="headline">
-        <h2 style="font-size: 3rem; color: #ff4630;">Магазин цифровых товаров</h2>
+        <h2 style="font-size: 3rem; color: white;">Магазин цифровых товаров</h2>
         <h2 style="color: yellow; font-size: 2rem">Выгодные предложения!</h2>
     </section>
     <div>

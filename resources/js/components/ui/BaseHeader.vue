@@ -23,6 +23,7 @@ export default {
     grid-template-columns: 0.5fr 1fr;
     grid-template-rows: 1fr;
     max-height: 8rem;
+    //align-items: center;
 }
 
 .title {

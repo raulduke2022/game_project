@@ -103,6 +103,7 @@ export default {
     //margin-top: 2rem;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .vueperslide--loading .vueperslide__content-wrapper {

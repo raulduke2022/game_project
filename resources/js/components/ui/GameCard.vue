@@ -67,7 +67,7 @@ export default {
 }
 
 .image:hover, image:hover:after {
-    opacity: 0.05;
+    opacity: 0.1;
 }
 
 </style>
